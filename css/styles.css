@@ -330,7 +330,12 @@ h1, h2, h3, h4 {
 .course__media { height: 160px; }
 .course__media--1 { background: linear-gradient(135deg, var(--green-soft), var(--green-deep)); }
 .course__media--2 { background: linear-gradient(135deg, var(--gold-soft), var(--gold)); }
-.course__media--masalas { background: url('../images/masalas.png') center/cover no-repeat; }
+.course__media--masalas {
+  background-image: url('../images/masalas.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .course__media--3 { background: linear-gradient(135deg, var(--terracotta-soft), var(--terracotta)); }
 .course__body { padding: 1.4rem; display: flex; flex-direction: column; flex: 1; }
 .tag {
