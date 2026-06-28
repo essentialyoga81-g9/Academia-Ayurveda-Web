@@ -337,6 +337,36 @@ h1, h2, h3, h4 {
   background-repeat: no-repeat;
 }
 .course__media--3 { background: linear-gradient(135deg, var(--terracotta-soft), var(--terracotta)); }
+.course__media--fundamentos {
+  background-image: url('../images/fundamentos.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.course__media--masaje {
+  background-image: url('../images/masaje.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.course__media--plantas {
+  background-image: url('../images/plantas.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.course__media--yoga {
+  background-image: url('../images/yoga.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.course__media--consultor {
+  background-image: url('../images/consultor.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .course__body { padding: 1.4rem; display: flex; flex-direction: column; flex: 1; }
 .tag {
   align-self: flex-start;
