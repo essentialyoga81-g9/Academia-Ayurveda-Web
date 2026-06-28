@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matriz Farmacodinámica Ayurvédica de Especias y Condimentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#1F4D3A;
+    --leaf:#5F8D4E;
+    --sage:#A7C7A0;
+    --mint:#E8F1E3;
+    --cream:#F8F5EC;
+    --beige:#EDE3D0;
+    --gold:#C6A15B;
+    --gold-soft:#e7d4ad;
+    --ink:#2E332C;
+    --muted:#5d6657;
+    --paper:#fffdf8;
+    --line:#dfe6d6;
+    --line-strong:#cdd9c2;
+    --terra:#A8521F;        /* terracota: fuego, calor metabólico */
+    --terra-soft:#f6e3d6;
+    --indigo:#244861;       /* azul profundo: frío, profundidad */
+    --indigo-soft:#d9e6f0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Inter","Lato","Open Sans","Segoe UI",system-ui,sans-serif;
+    color:var(--ink);
+    line-height:1.7;
+    font-size:17px;
+    background-color:var(--cream);
+    background-image:
+      radial-gradient(circle at 18% 22%, rgba(95,141,78,.05) 0, transparent 42%),
+      radial-gradient(circle at 82% 78%, rgba(31,77,58,.05) 0, transparent 46%),
+      repeating-linear-gradient(0deg, rgba(46,51,44,.012) 0 2px, transparent 2px 4px);
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px 90px;}
+
+  /* ---------- Portada ---------- */
+  .cover{
+    position:relative;text-align:center;padding:64px 26px 54px;color:#f3f5ee;overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 8%, rgba(166,199,160,.22) 0, transparent 60%),
+      linear-gradient(165deg, #1F4D3A 0%, #2c6347 48%, #3f7553 100%);
+    border-bottom:5px solid var(--gold);margin-bottom:36px;box-shadow:0 14px 34px rgba(31,77,58,.28);
+  }
+  .cover::before{
+    content:"";position:absolute;inset:0;opacity:.10;pointer-events:none;
+    background-image:
+      radial-gradient(circle at 12% 30%, #fff 0 2px, transparent 3px),
+      radial-gradient(circle at 88% 24%, #fff 0 2px, transparent 3px),
+      radial-gradient(circle at 22% 80%, #fff 0 2px, transparent 3px),
+      radial-gradient(circle at 78% 84%, #fff 0 2px, transparent 3px);
+  }
+  .cover-frame{position:relative;z-index:1;border:1px solid rgba(231,212,173,.45);border-radius:18px;padding:30px 20px 26px;max-width:780px;margin:0 auto;}
+  .cover .mandala{margin-bottom:6px;line-height:0;}
+  .cover .mandala svg{width:78px;height:78px;}
+  .cover .kicker{font-family:"Inter",sans-serif;letter-spacing:4px;text-transform:uppercase;font-size:.72rem;color:var(--gold-soft);margin:6px 0 14px;}
+  .cover h1{font-family:"Playfair Display","Cormorant Garamond",serif;font-size:2.7rem;line-height:1.12;margin:0 0 6px;font-weight:800;color:#fdfbf4;letter-spacing:.5px;text-shadow:0 2px 16px rgba(0,0,0,.18);}
+  .cover .leaf-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:16px auto 14px;color:var(--gold-soft);}
+  .cover .leaf-divider::before,.cover .leaf-divider::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--gold-soft));}
+  .cover .leaf-divider::after{background:linear-gradient(90deg,var(--gold-soft),transparent);}
+  .cover .sub{font-family:"Cormorant Garamond",serif;font-size:1.34rem;line-height:1.5;opacity:.96;margin:0 auto;max-width:600px;font-weight:500;font-style:italic;}
+  .cover .botanical-row{display:flex;align-items:center;justify-content:center;gap:30px;margin-top:24px;opacity:.92;}
+  .cover .botanical-row svg{width:56px;height:46px;}
+  .cover .meta{font-family:"Inter",sans-serif;font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-soft);margin-top:22px;opacity:.85;}
+
+  /* ---------- Tipografía editorial ---------- */
+  h2{font-family:"Cormorant Garamond","Playfair Display",serif;font-size:2rem;font-weight:700;color:var(--forest);margin:46px 0 10px;padding-bottom:10px;position:relative;letter-spacing:.3px;border-bottom:2px solid var(--line-strong);}
+  h2::after{content:"";position:absolute;left:0;bottom:-2px;width:78px;height:2px;background:var(--gold);}
+  p{margin:.55em 0;}
+  strong{color:var(--forest);}
+  em{color:inherit;}
+
+  .lead{
+    background:linear-gradient(180deg,#fff,var(--mint));border-left:4px solid var(--leaf);
+    padding:18px 22px;border-radius:0 12px 12px 0;color:var(--muted);
+    font-family:"Cormorant Garamond",serif;font-size:1.2rem;font-style:italic;
+    box-shadow:0 3px 14px rgba(31,77,58,.06);margin:24px 0;
+  }
+
+  /* ---------- Leyenda de iconos ---------- */
+  .key{
+    position:relative;background:linear-gradient(180deg,#fff,var(--mint));
+    border:1px solid var(--sage);border-left:5px solid var(--leaf);border-radius:12px;
+    padding:18px 22px;margin:24px 0;box-shadow:0 3px 12px rgba(31,77,58,.06);
+  }
+  .key .key-title{font-family:"Inter",sans-serif;font-weight:600;color:var(--forest);display:block;margin-bottom:12px;letter-spacing:.3px;text-transform:uppercase;font-size:.82rem;}
+  .legend-grid{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;}
+  .legend-grid .item{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--muted);}
+
+  /* ---------- Chips de Virya / Vipaka ---------- */
+  .chip{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:30px;font-size:.76rem;font-weight:600;font-family:"Inter",sans-serif;letter-spacing:.2px;white-space:nowrap;line-height:1.35;}
+  .chip .es{font-weight:400;opacity:.82;}
+  .hot{background:linear-gradient(135deg,#f3ddc7,#e7b98f);color:var(--terra);border:1px solid #d99c66;}
+  .cold{background:linear-gradient(135deg,var(--indigo-soft),#b9d2e7);color:var(--indigo);border:1px solid #8fb3d0;}
+  .dual{background:linear-gradient(135deg,#f3e7d3,#dfe6f0);color:#6b5630;border:1px solid var(--gold);}
+  .vp-madhura{background:#eef3e6;color:var(--forest);border:1px solid var(--sage);}
+  .vp-katu{background:var(--terra-soft);color:var(--terra);border:1px solid #e0b48f;}
+
+  /* ---------- Pills de Doshas ---------- */
+  .dosha{display:inline-flex;align-items:center;gap:3px;padding:2px 9px;border-radius:8px;font-size:.74rem;font-weight:600;margin:2px 4px 2px 0;font-family:"Inter",sans-serif;white-space:nowrap;}
+  .d-down{background:var(--mint);color:var(--forest);border:1px solid var(--sage);}
+  .d-up{background:var(--terra-soft);color:var(--terra);border:1px solid #e0b48f;}
+  .d-neutral{background:#efe9dc;color:#6b6450;border:1px solid var(--gold-soft);}
+  .tridosha{display:inline-flex;align-items:center;gap:5px;padding:2px 10px;border-radius:30px;font-size:.74rem;font-weight:600;background:linear-gradient(135deg,#eef3e6,#e2eed5);color:var(--forest);border:1px solid var(--gold);margin-bottom:5px;}
+
+  /* ---------- Términos sánscritos ---------- */
+  .sk{font-weight:600;color:var(--forest);font-family:"Inter",sans-serif;}
+  .es-sm{display:block;font-size:.74rem;font-weight:400;color:var(--muted);font-style:italic;line-height:1.3;margin-top:1px;}
+  .rasa-list .sk, .guna-list .sk{display:inline;}
+  .rasa-list span.es, .guna-list span.es{color:var(--muted);font-style:italic;font-size:.82rem;}
+
+  /* ---------- Tabla matriz ---------- */
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px;box-shadow:0 4px 16px rgba(31,77,58,.06);margin:20px 0;}
+  table{
+    width:100%;border-collapse:separate;border-spacing:0;font-size:.9rem;
+    background:var(--paper);border-radius:12px;overflow:hidden;border:1px solid var(--line);min-width:920px;
+  }
+  thead th{
+    background:linear-gradient(135deg,var(--forest),#2c6347);color:#f3f5ee;text-align:left;
+    padding:13px 13px;font-weight:600;font-family:"Inter",sans-serif;font-size:.74rem;
+    letter-spacing:.5px;text-transform:uppercase;vertical-align:middle;border-bottom:3px solid var(--gold);
+  }
+  td{padding:13px 13px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even) td{background:var(--mint);}
+  tbody tr:hover td{background:#dcebd4;}
+  td em{font-style:italic;}
+  .num{font-family:"Cormorant Garamond",serif;font-size:1.3rem;font-weight:700;color:var(--gold);text-align:center;}
+  .cond{font-family:"Cormorant Garamond",serif;font-size:1.18rem;font-weight:700;color:var(--leaf);line-height:1.25;}
+  .perfil{color:var(--muted);font-size:.86rem;}
+  .perfil .sk{font-style:normal;}
+  td.doshas{min-width:124px;}
+  .col-rasa,.col-guna{min-width:130px;}
+  .col-perfil{min-width:210px;}
+
+  .footer{margin-top:50px;padding-top:22px;color:var(--muted);font-size:.85rem;font-style:italic;text-align:center;position:relative;}
+  .footer::before{content:"❧";display:block;color:var(--gold);font-size:1.4rem;font-style:normal;margin-bottom:10px;}
+
+  /* ---------- Botón imprimir ---------- */
+  .printhint{text-align:center;margin:6px 0 0;}
+  .printhint .print-steps{max-width:620px;margin:12px auto 0;font-size:.84rem;color:var(--muted);font-style:italic;line-height:1.55;}
+  .printhint button{
+    background:linear-gradient(135deg,var(--forest),var(--leaf));color:#f3f5ee;border:1px solid var(--gold-soft);
+    border-radius:30px;padding:11px 26px;font-size:.95rem;cursor:pointer;font-family:"Inter",sans-serif;letter-spacing:.3px;
+    box-shadow:0 4px 14px rgba(31,77,58,.25);transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .printhint button:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(31,77,58,.32);}
+
+  @media (max-width:620px){
+    body{font-size:16px;}
+    .cover{padding:48px 16px 40px;}
+    .cover h1{font-size:1.85rem;}
+    .cover .sub{font-size:1.1rem;}
+    .cover-frame{padding:22px 14px 20px;}
+    h2{font-size:1.55rem;}
+    table{font-size:.85rem;}
+    thead th,td{padding:10px 9px;}
+  }
+
+  /* ---------- Impresión / PDF (A4 horizontal · landscape) ---------- */
+  @page{
+    size:A4 landscape;
+    margin:0;
+  }
+  @media print{
+    html,body{background:#fff;background-image:none;}
+    body{font-size:9pt;}
+    .wrap{max-width:none;padding:12mm 12mm 14mm;}
+    .no-print{display:none !important;}
+
+    /* Portada a página completa, centrada verticalmente */
+    .cover{
+      background:linear-gradient(165deg,#1F4D3A,#3f7553) !important;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+      border-radius:0;margin:0;padding:0;border-bottom:none;
+      min-height:172mm;display:flex;align-items:center;justify-content:center;
+      break-after:page;page-break-after:always;
+    }
+    .cover-frame{border-color:rgba(231,212,173,.6);}
+
+    h2{break-after:avoid;page-break-after:avoid;margin-top:0;}
+    .lead,.key{break-inside:avoid;page-break-inside:avoid;}
+
+    /* Tabla a ancho completo · encabezado repetido en cada hoja · sin cortar filas */
+    .tablewrap{overflow:visible;box-shadow:none;border-radius:0;margin:6mm 0 0;}
+    table{min-width:0;width:100%;box-shadow:none;border-radius:0;font-size:8.4pt;}
+    thead{display:table-header-group;}
+    tfoot{display:table-footer-group;}
+    tr{break-inside:avoid;page-break-inside:avoid;}
+    thead th{padding:8px 8px;font-size:.7rem;}
+    td{padding:7px 8px;}
+    .es-sm{font-size:.66rem;}
+
+    /* conservar todos los colores Ayurveda en la impresión */
+    .cover,.key,.lead,table,thead th,tbody tr:nth-child(even) td,.num,.cond,
+    .chip,.dosha,.tridosha,.vp-madhura,.vp-katu,.hot,.cold,.dual{
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-frame">
+    <div class="mandala" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e7d4ad" stroke-width="1.4" stroke-linecap="round">
+          <circle cx="50" cy="50" r="6" fill="none"/>
+          <g><path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/><path d="M50 16 L50 30" stroke-width="1"/></g>
+          <g transform="rotate(60 50 50)"><path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/><path d="M50 16 L50 30" stroke-width="1"/></g>
+          <g transform="rotate(120 50 50)"><path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/><path d="M50 16 L50 30" stroke-width="1"/></g>
+          <g transform="rotate(180 50 50)"><path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/><path d="M50 16 L50 30" stroke-width="1"/></g>
+          <g transform="rotate(240 50 50)"><path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/><path d="M50 16 L50 30" stroke-width="1"/></g>
+          <g transform="rotate(300 50 50)"><path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/><path d="M50 16 L50 30" stroke-width="1"/></g>
+          <circle cx="50" cy="50" r="32" stroke-dasharray="1 5" stroke-width="1.1" opacity=".6"/>
+        </g>
+      </svg>
+    </div>
+    <div class="kicker">Dravyaguṇa Vijñāna · Ciencia de las sustancias</div>
+    <h1>Matriz Farmacodinámica Ayurvédica</h1>
+    <div class="leaf-divider" aria-hidden="true">❦</div>
+    <p class="sub">Rasapañcaka • Virya • Vipāka • Acción sobre Doṣas — el perfil energético de 17 especias y condimentos.</p>
+    <div class="botanical-row" aria-hidden="true">
+      <!-- sprig de hojas -->
+      <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e7d4ad" stroke-width="1.6" stroke-linecap="round">
+          <path d="M60 84 C60 60 60 36 60 14"/>
+          <path d="M60 60 C44 56 34 46 30 32 C46 34 56 44 60 60 Z" fill="rgba(231,212,173,.16)"/>
+          <path d="M60 48 C76 44 86 34 90 20 C74 22 64 32 60 48 Z" fill="rgba(231,212,173,.16)"/>
+          <path d="M60 34 C48 31 40 23 37 13 C49 15 57 24 60 34 Z" fill="rgba(231,212,173,.16)"/>
+        </g>
+      </svg>
+      <!-- flor de anís estrellado -->
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e7d4ad" stroke-width="1.5" stroke-linecap="round">
+          <g><path d="M50 50 L50 14 C53 24 53 30 50 50 C47 30 47 24 50 14" fill="rgba(231,212,173,.16)"/></g>
+          <g transform="rotate(45 50 50)"><path d="M50 50 L50 14 C53 24 53 30 50 50 C47 30 47 24 50 14" fill="rgba(231,212,173,.16)"/></g>
+          <g transform="rotate(90 50 50)"><path d="M50 50 L50 14 C53 24 53 30 50 50 C47 30 47 24 50 14" fill="rgba(231,212,173,.16)"/></g>
+          <g transform="rotate(135 50 50)"><path d="M50 50 L50 14 C53 24 53 30 50 50 C47 30 47 24 50 14" fill="rgba(231,212,173,.16)"/></g>
+          <g transform="rotate(180 50 50)"><path d="M50 50 L50 14 C53 24 53 30 50 50 C47 30 47 24 50 14" fill="rgba(231,212,173,.16)"/></g>
+          <g transform="rotate(225 50 50)"><path d="M50 50 L50 14 C53 24 53 30 50 50 C47 30 47 24 50 14" fill="rgba(231,212,173,.16)"/></g>
+          <g transform="rotate(270 50 50)"><path d="M50 50 L50 14 C53 24 53 30 50 50 C47 30 47 24 50 14" fill="rgba(231,212,173,.16)"/></g>
+          <g transform="rotate(315 50 50)"><path d="M50 50 L50 14 C53 24 53 30 50 50 C47 30 47 24 50 14" fill="rgba(231,212,173,.16)"/></g>
+          <circle cx="50" cy="50" r="5"/>
+        </g>
+      </svg>
+      <!-- semillas / granos -->
+      <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e7d4ad" stroke-width="1.5">
+          <ellipse cx="40" cy="40" rx="9" ry="14" transform="rotate(-22 40 40)" fill="rgba(231,212,173,.16)"/>
+          <ellipse cx="64" cy="52" rx="9" ry="14" transform="rotate(14 64 52)" fill="rgba(231,212,173,.16)"/>
+          <ellipse cx="82" cy="36" rx="8" ry="12" transform="rotate(-10 82 36)" fill="rgba(231,212,173,.16)"/>
+          <path d="M40 30 L40 50 M64 42 L64 62 M82 26 L82 46" stroke-width="1"/>
+        </g>
+      </svg>
+    </div>
+    <div class="meta">Dravyaguṇa Vijñāna · Curso de Masalas</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="printhint no-print">
+    <button onclick="window.print()">🖨️ Guardar como PDF (A4 horizontal)</button>
+    <p class="print-steps">Ya viene configurado en <strong>A4 horizontal</strong>. Pulsa el botón → <em>Destino:</em> «Guardar como PDF» → <em>Diseño:</em> Horizontal → desactiva «Encabezados y pies de página» → Guardar como <strong>Matriz_Farmacodinamica_Ayurvedica_Especias.pdf</strong>.</p>
+  </div>
+
+  <p class="lead">Cada especia se analiza por su <strong>sabor</strong> (Rasa), sus <strong>cualidades físicas</strong> (Guṇa), su <strong>potencia térmica</strong> (Virya), su <strong>efecto tras la digestión</strong> (Vipāka) y su <strong>acción sobre las tres energías</strong> (Doṣas). Así comprendemos no solo qué contiene la planta, sino cómo actúa de forma completa en el cuerpo.</p>
+
+  <div class="key" aria-label="Leyenda de iconos">
+    <span class="key-title">Cómo leer la matriz</span>
+    <div class="legend-grid">
+      <span class="item"><span class="chip hot">🔥 Uṣṇa</span> Potencia caliente</span>
+      <span class="item"><span class="chip cold">❄️ Śīta</span> Potencia fría</span>
+      <span class="item"><span class="chip dual">🔥❄️ Śīta/Uṣṇa</span> Varía según la escuela</span>
+      <span class="item"><span class="tridosha">🌿 Tridóṣico</span> Equilibra los tres</span>
+      <span class="item"><span class="dosha d-down">Pitta ↓</span> Reduce</span>
+      <span class="item"><span class="dosha d-up">Pitta ↑</span> Aumenta</span>
+      <span class="item"><span class="dosha d-neutral">Vāta =</span> Neutral</span>
+    </div>
+  </div>
+
+  <h2>Matriz Farmacodinámica de Especias y Condimentos</h2>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Condimento</th>
+          <th>Nombre sánscrito</th>
+          <th class="col-rasa">Rasa <em>(sabor)</em></th>
+          <th class="col-guna">Guṇa <em>(cualidades)</em></th>
+          <th>Virya <em>(potencia)</em></th>
+          <th>Vipāka <em>(post-digestivo)</em></th>
+          <th>Acción sobre Doṣas</th>
+          <th class="col-perfil">Perfil terapéutico (Karma) / observaciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">1</td>
+          <td class="cond">Cúrcuma</td>
+          <td><span class="sk">Haridrā</span><span class="es-sm">la que mejora el color de la piel</span></td>
+          <td class="rasa-list"><span class="sk">Tikta</span> <span class="es">amargo</span>, <span class="sk">Kaṭu</span> <span class="es">picante</span></td>
+          <td class="guna-list"><span class="sk">Rūkṣa</span> <span class="es">seco</span>, <span class="sk">Laghu</span> <span class="es">ligero</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="tridosha">🌿 Tridóṣico</span><br><span class="dosha d-down">Kapha ↓</span><span class="dosha d-down">Pitta ↓</span><span class="dosha d-neutral">Vāta =</span></td>
+          <td class="perfil"><span class="sk">Viṣaghna</span> (destruye toxinas), <span class="sk">Lekhana</span> (raspa excesos), <span class="sk">Kuṣṭhaghna</span> (piel · Prabhāva). Excelente para purificar la sangre (<em>Rakta</em>) y el <em>Āma</em>.</td>
+        </tr>
+        <tr>
+          <td class="num">2</td>
+          <td class="cond">Páprika dulce</td>
+          <td><span class="sk">Laṅkā</span><span class="es-sm">ají dulce</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span>, <span class="sk">Madhura</span> <span class="es">dulce</span></td>
+          <td class="guna-list"><span class="sk">Laghu</span> <span class="es">ligero</span>, <span class="sk">Rūkṣa</span> <span class="es">seco</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span><span class="es-sm">moderada</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span><span class="es-sm">(en exceso)</span></td>
+          <td class="perfil"><span class="sk">Dīpana</span> (estimula el fuego digestivo). Estimulante digestivo periférico; uso moderado.</td>
+        </tr>
+        <tr>
+          <td class="num">3</td>
+          <td class="cond">Pimienta negra</td>
+          <td><span class="sk">Marica</span><span class="es-sm">la que disipa</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span></td>
+          <td class="guna-list"><span class="sk">Tīkṣṇa</span> <span class="es">penetrante</span>, <span class="sk">Laghu</span> <span class="es">ligero</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span></td>
+          <td class="perfil"><span class="sk">Pramāthī</span> (abre y limpia los canales), <span class="sk">Yogavāhī</span> (catalizador · Prabhāva). Destruye el <em>Āma</em> profundamente arraigado.</td>
+        </tr>
+        <tr>
+          <td class="num">4</td>
+          <td class="cond">Mostaza negra</td>
+          <td><span class="sk">Rājikā</span><span class="es-sm">la que estimula</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span>, <span class="sk">Tikta</span> <span class="es">amargo</span></td>
+          <td class="guna-list"><span class="sk">Tīkṣṇa</span> <span class="es">penetrante</span>, <span class="sk">Snigdha</span> <span class="es">untuoso</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span><span class="es-sm">muy caliente</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span><span class="es-sm">(marcado)</span></td>
+          <td class="perfil"><span class="sk">Śothahara</span> (reduce la inflamación local). Fuerte acción rubefaciente; precaución en Pitta.</td>
+        </tr>
+        <tr>
+          <td class="num">5</td>
+          <td class="cond">Mostaza amarilla</td>
+          <td><span class="sk">Siddhārtha</span><span class="es-sm">la que cumple su propósito</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span>, <span class="sk">Tikta</span> <span class="es">amargo</span>, <span class="sk">Madhura</span> <span class="es">dulce</span></td>
+          <td class="guna-list"><span class="sk">Tīkṣṇa</span> <span class="es">penetrante</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span><span class="es-sm">(moderado)</span></td>
+          <td class="perfil"><span class="sk">Pācana</span> (digiere toxinas). Menos irritante que la mostaza negra.</td>
+        </tr>
+        <tr>
+          <td class="num">6</td>
+          <td class="cond">Comino</td>
+          <td><span class="sk">Jīraka</span><span class="es-sm">lo que promueve la digestión</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span>, <span class="sk">Tikta</span> <span class="es">amargo</span></td>
+          <td class="guna-list"><span class="sk">Rūkṣa</span> <span class="es">seco</span>, <span class="sk">Laghu</span> <span class="es">ligero</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span><span class="es-sm">(en exceso)</span></td>
+          <td class="perfil"><span class="sk">Grāhī</span> (absorbente), <span class="sk">Dīpana</span> (digestivo), <span class="sk">Garbhāśayaviśodhana</span> (limpia el útero · Prabhāva). Excelente para flatulencias; <strong>no es un equilibrador absoluto</strong>: agrava Pitta si se abusa.</td>
+        </tr>
+        <tr>
+          <td class="num">7</td>
+          <td class="cond">Jengibre seco</td>
+          <td><span class="sk">Śuṇṭhī</span><span class="es-sm">la que es pura</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span></td>
+          <td class="guna-list"><span class="sk">Snigdha</span> <span class="es">untuoso</span>, <span class="sk">Laghu</span> <span class="es">ligero</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-madhura">Madhura <span class="es">dulce</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span><span class="es-sm">(suave)</span></td>
+          <td class="perfil"><span class="sk">Vṛṣya</span> (afrodisíaco suave), <span class="sk">Āmapācana</span> (digiere toxinas), <span class="sk">Tṛptighna</span> (Prabhāva). No reseca los tejidos a largo plazo gracias a su <em>Vipāka</em> dulce.</td>
+        </tr>
+        <tr>
+          <td class="num">8</td>
+          <td class="cond">Romero en polvo</td>
+          <td><span class="sk">Rujamarī</span><span class="es-sm">adaptación moderna</span></td>
+          <td class="rasa-list"><span class="sk">Tikta</span> <span class="es">amargo</span>, <span class="sk">Kaṣāya</span> <span class="es">astringente</span>, <span class="sk">Kaṭu</span> <span class="es">picante</span></td>
+          <td class="guna-list"><span class="sk">Rūkṣa</span> <span class="es">seco</span>, <span class="sk">Tīkṣṇa</span> <span class="es">penetrante</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span><span class="es-sm">(moderado)</span></td>
+          <td class="perfil"><span class="sk">Medhya</span> (tónico cognitivo). Estimula la circulación y la memoria. <strong>Adaptación moderna</strong> al Ayurveda.</td>
+        </tr>
+        <tr>
+          <td class="num">9</td>
+          <td class="cond">Fenogreco</td>
+          <td><span class="sk">Methikā</span><span class="es-sm">la que sostiene la mente</span></td>
+          <td class="rasa-list"><span class="sk">Tikta</span> <span class="es">amargo</span>, <span class="sk">Kaṭu</span> <span class="es">picante</span>, <span class="sk">Madhura</span> <span class="es">dulce</span></td>
+          <td class="guna-list"><span class="sk">Snigdha</span> <span class="es">untuoso</span>, <span class="sk">Laghu</span> <span class="es">ligero</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Kapha ↓</span><span class="dosha d-down">Vāta ↓</span><span class="dosha d-up">Pitta ↑</span><span class="es-sm">(Vāta mod.)</span></td>
+          <td class="perfil"><span class="sk">Vātānulomana</span> (dirige el Vāta hacia abajo), <span class="sk">Pramehaghna</span> (desórdenes metabólicos · Prabhāva). Apoyo en la resistencia a la insulina.</td>
+        </tr>
+        <tr>
+          <td class="num">10</td>
+          <td class="cond">Azafétida</td>
+          <td><span class="sk">Hiṅgu</span><span class="es-sm">la que destruye la flatulencia</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span></td>
+          <td class="guna-list"><span class="sk">Tīkṣṇa</span> <span class="es">penetrante</span>, <span class="sk">Snigdha</span> <span class="es">untuoso</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span></td>
+          <td class="perfil"><span class="sk">Chedana</span> (expectora mucosidad), <span class="sk">Ānāhapraśamana</span> (alivia la distensión · Prabhāva). Espasmolítico potente; esencial en dietas con legumbres.</td>
+        </tr>
+        <tr>
+          <td class="num">11</td>
+          <td class="cond">Clavo</td>
+          <td><span class="sk">Lavaṅga</span><span class="es-sm">el que corta o penetra</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span>, <span class="sk">Tikta</span> <span class="es">amargo</span></td>
+          <td class="guna-list"><span class="sk">Laghu</span> <span class="es">ligero</span>, <span class="sk">Snigdha</span> <span class="es">untuoso</span></td>
+          <td><span class="chip dual">🔥❄️ Śīta/Uṣṇa</span><span class="es-sm">según la escuela</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-down">Pitta ↓</span><span class="es-sm">(dosis pequeñas)</span></td>
+          <td class="perfil"><span class="sk">Kāśahara</span> (alivia la tos), <span class="sk">Śūlapraśamana</span> (analgésico local · Prabhāva). Regula el tracto gastrointestinal en acidez con estancamiento.</td>
+        </tr>
+        <tr>
+          <td class="num">12</td>
+          <td class="cond">Canela</td>
+          <td><span class="sk">Tvak</span><span class="es-sm">corteza</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span>, <span class="sk">Madhura</span> <span class="es">dulce</span>, <span class="sk">Tikta</span> <span class="es">amargo</span></td>
+          <td class="guna-list"><span class="sk">Laghu</span> <span class="es">ligero</span>, <span class="sk">Rūkṣa</span> <span class="es">seco</span>, <span class="sk">Tīkṣṇa</span> <span class="es">penetrante</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span><span class="es-sm">(en exceso)</span></td>
+          <td class="perfil"><span class="sk">Viṣaghna</span> (antimicrobiano), <span class="sk">Dīpana</span> (digestivo). Beneficiosa para la circulación capilar y la regulación de la glucosa.</td>
+        </tr>
+        <tr>
+          <td class="num">13</td>
+          <td class="cond">Nuez moscada</td>
+          <td><span class="sk">Jātīphala</span><span class="es-sm">fruta fragante</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span>, <span class="sk">Tikta</span> <span class="es">amargo</span>, <span class="sk">Kaṣāya</span> <span class="es">astringente</span></td>
+          <td class="guna-list"><span class="sk">Laghu</span> <span class="es">ligero</span>, <span class="sk">Tīkṣṇa</span> <span class="es">penetrante</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span></td>
+          <td class="perfil"><span class="sk">Grāhī</span> (absorbente, detiene la diarrea), <span class="sk">Nidrājanana</span> (induce el sueño · Prabhāva). Uso cuidadoso por su toxicidad en altas dosis; combate el insomnio por Vāta.</td>
+        </tr>
+        <tr>
+          <td class="num">14</td>
+          <td class="cond">Anís estrellado</td>
+          <td><span class="sk">Cakra Phūl</span><span class="es-sm">flor en forma de rueda</span></td>
+          <td class="rasa-list"><span class="sk">Madhura</span> <span class="es">dulce</span>, <span class="sk">Kaṭu</span> <span class="es">picante</span></td>
+          <td class="guna-list"><span class="sk">Laghu</span> <span class="es">ligero</span>, <span class="sk">Tīkṣṇa</span> <span class="es">penetrante</span></td>
+          <td><span class="chip hot">🔥 Uṣṇa</span></td>
+          <td><span class="chip vp-katu">Kaṭu <span class="es">picante</span></span></td>
+          <td class="doshas"><span class="dosha d-down">Vāta ↓</span><span class="dosha d-down">Kapha ↓</span><span class="dosha d-up">Pitta ↑</span><span class="es-sm">(moderado)</span></td>
+          <td class="perfil"><span class="sk">Anulomana</span> (regula el flujo descendente de Vāta), <span class="sk">Jvaraghna</span> (reduce la fiebre viral · Prabhāva). Diaforético para la mucosidad respiratoria profunda.</td>
+        </tr>
+        <tr>
+          <td class="num">15</td>
+          <td class="cond">Cardamomo verde</td>
+          <td><span class="sk">Sūkṣma Elā</span><span class="es-sm">la pequeña Ela</span></td>
+          <td class="rasa-list"><span class="sk">Kaṭu</span> <span class="es">picante</span>, <span class="sk">Tikta</span> <span class="es">amargo</span>, <span class="sk">Madhura</span> <span class="es">dulce</span></td>
+          <td class="guna-list"><span class="sk">Laghu</span> <span class="es">ligero</span>, <span class="sk">Rūkṣa</span> <span class="es">seco</span></td>
+          <td><span class="chip cold">❄️ Śīta</span></td>
+          <td><span class="chip vp-madhura">Madhura <span class="es">dulce</span></span></td>
+          <td class="doshas"><span class="tridosha">🌿 Tridóṣico</span><br><span class="dosha d-down">Pitta ↓</span><span class="es-sm">(supremo)</span></td>
+          <td class="perfil"><span class="sk">Mūtrakṛcchraghna</span> (diurético suave), <span class="sk">Hṛdya</span> (tónico cardíaco). Armonizador único; calma la acidez estomacal sin provocar sequedad.</td>
+        </tr>
+        <tr>
+          <td class="num">16</td>
+          <td class="cond">Semillas de cilantro</td>
+          <td><span class="sk">Dhānyaka</span><span class="es-sm">la que nutre</span></td>
+          <td class="rasa-list"><span class="sk">Madhura</span> <span class="es">dulce</span>, <span class="sk">Tikta</span> <span class="es">amargo</span>, <span class="sk">Kaṣāya</span> <span class="es">astringente</span>, <span class="sk">Kaṭu</span> <span class="es">picante</span></td>
+          <td class="guna-list"><span class="sk">Laghu</span> <span class="es">ligero</span>, <span class="sk">Snigdha</span> <span class="es">untuoso</span></td>
+          <td><span class="chip cold">❄️ Śīta</span></td>
+          <td><span class="chip vp-madhura">Madhura <span class="es">dulce</span></span></td>
+          <td class="doshas"><span class="tridosha">🌿 Tridóṣico</span><br><span class="dosha d-down">Pitta ↓</span><span class="es-sm">(supremo)</span></td>
+          <td class="perfil"><span class="sk">Tṛṣṇānigrahaṇa</span> (alivia la sed excesiva), <span class="sk">Dāhapraśamana</span> (elimina el ardor interno · Prabhāva). Su infusión fría es ideal para la gastritis erosiva sin apagar el fuego digestivo.</td>
+        </tr>
+        <tr>
+          <td class="num">17</td>
+          <td class="cond">Hojas de cilantro</td>
+          <td><span class="sk">Kustumburu</span><span class="es-sm">la que mitiga enfermedades</span></td>
+          <td class="rasa-list"><span class="sk">Tikta</span> <span class="es">amargo</span>, <span class="sk">Kaṣāya</span> <span class="es">astringente</span>, <span class="sk">Madhura</span> <span class="es">dulce</span></td>
+          <td class="guna-list"><span class="sk">Laghu</span> <span class="es">ligero</span></td>
+          <td><span class="chip cold">❄️ Śīta</span></td>
+          <td><span class="chip vp-madhura">Madhura <span class="es">dulce</span></span></td>
+          <td class="doshas"><span class="tridosha">🌿 Tridóṣico</span><br><span class="dosha d-down">Pitta ↓</span><span class="dosha d-up">Vāta ↑</span><span class="es-sm">(en exceso)</span></td>
+          <td class="perfil"><span class="sk">Raktaprasādana</span> (purifica la sangre). Útil en dermatosis inflamatorias e irritaciones oculares.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="footer">Matriz farmacodinámica basada en el análisis del Rasapañcaka según el Dravyaguṇa Vijñāna.<br>
+  Material educativo de apoyo — Curso de Masalas. No sustituye el consejo de un profesional de la salud.</p>
+
+</div>
+</body>
+</html>

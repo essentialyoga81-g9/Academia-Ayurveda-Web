@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los 17 Condimentos del Ayurveda — Manual del Estudiante</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#1F4D3A;       /* verde bosque profundo */
+    --leaf:#5F8D4E;         /* verde hoja medicinal */
+    --sage:#A7C7A0;         /* verde salvia suave */
+    --mint:#E8F1E3;         /* verde menta claro */
+    --cream:#F8F5EC;        /* crema papel natural */
+    --beige:#EDE3D0;        /* beige cálido */
+    --gold:#C6A15B;         /* dorado sutil ayurveda */
+    --gold-soft:#e7d4ad;
+    --ink:#2E332C;          /* texto carbón suave */
+    --muted:#5d6657;
+    --paper:#fffdf8;        /* marfil cálido para fichas */
+    --line:#dfe6d6;
+    --line-strong:#cdd9c2;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Inter","Lato","Open Sans","Segoe UI",system-ui,sans-serif;
+    color:var(--ink);
+    line-height:1.7;
+    font-size:17px;
+    background-color:var(--cream);
+    /* textura sutil de papel artesanal sin imágenes externas */
+    background-image:
+      radial-gradient(circle at 18% 22%, rgba(95,141,78,.05) 0, transparent 42%),
+      radial-gradient(circle at 82% 78%, rgba(31,77,58,.05) 0, transparent 46%),
+      repeating-linear-gradient(0deg, rgba(46,51,44,.012) 0 2px, transparent 2px 4px);
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px 90px;}
+
+  /* ---------- Portada / libro ---------- */
+  .cover{
+    position:relative;
+    text-align:center;
+    padding:74px 26px 64px;
+    color:#f3f5ee;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 8%, rgba(166,199,160,.22) 0, transparent 60%),
+      linear-gradient(165deg, #1F4D3A 0%, #2c6347 48%, #3f7553 100%);
+    border-bottom:5px solid var(--gold);
+    margin-bottom:42px;
+    box-shadow:0 14px 34px rgba(31,77,58,.28);
+  }
+  /* halo de hojas en marca de agua */
+  .cover::before{
+    content:"";position:absolute;inset:0;opacity:.10;pointer-events:none;
+    background-image:
+      radial-gradient(circle at 12% 30%, #fff 0 2px, transparent 3px),
+      radial-gradient(circle at 88% 24%, #fff 0 2px, transparent 3px),
+      radial-gradient(circle at 22% 80%, #fff 0 2px, transparent 3px),
+      radial-gradient(circle at 78% 84%, #fff 0 2px, transparent 3px);
+  }
+  .cover-frame{position:relative;z-index:1;border:1px solid rgba(231,212,173,.45);border-radius:18px;padding:34px 20px 30px;max-width:660px;margin:0 auto;}
+  .cover .mandala{margin-bottom:6px;line-height:0;}
+  .cover .mandala svg{width:84px;height:84px;}
+  .cover .kicker{
+    font-family:"Inter",sans-serif;
+    letter-spacing:4px;text-transform:uppercase;font-size:.72rem;
+    color:var(--gold-soft);margin:6px 0 16px;
+  }
+  .cover h1{
+    font-family:"Playfair Display","Cormorant Garamond",serif;
+    font-size:3rem;line-height:1.12;margin:0 0 6px;font-weight:800;
+    color:#fdfbf4;letter-spacing:.5px;
+    text-shadow:0 2px 16px rgba(0,0,0,.18);
+  }
+  .cover .leaf-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:18px auto 16px;color:var(--gold-soft);}
+  .cover .leaf-divider::before,.cover .leaf-divider::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--gold-soft));}
+  .cover .leaf-divider::after{background:linear-gradient(90deg,var(--gold-soft),transparent);}
+  .cover .sub{
+    font-family:"Cormorant Garamond",serif;
+    font-size:1.32rem;line-height:1.5;opacity:.96;margin:0 auto;max-width:540px;font-weight:500;font-style:italic;
+  }
+
+  /* ---------- Tipografía editorial ---------- */
+  h2{
+    font-family:"Cormorant Garamond","Playfair Display",serif;
+    font-size:2.1rem;font-weight:700;color:var(--forest);
+    margin:52px 0 10px;padding-bottom:10px;position:relative;letter-spacing:.3px;
+    border-bottom:2px solid var(--line-strong);
+  }
+  h2::after{
+    content:"";position:absolute;left:0;bottom:-2px;width:78px;height:2px;background:var(--gold);
+  }
+  h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:1.55rem;font-weight:700;color:var(--leaf);margin:30px 0 6px;letter-spacing:.2px;
+  }
+  h4{
+    font-family:"Inter",sans-serif;
+    font-size:.82rem;color:var(--forest);margin:20px 0 4px;text-transform:uppercase;letter-spacing:1.2px;font-weight:600;
+    display:flex;align-items:center;gap:8px;
+  }
+  h4::before{content:"";flex:0 0 auto;width:14px;height:2px;background:var(--gold);border-radius:2px;}
+  p{margin:.55em 0;}
+  strong{color:var(--forest);}
+  a{color:var(--leaf);}
+  em{color:inherit;}
+
+  .lead{
+    background:linear-gradient(180deg,#fff,var(--mint));
+    border-left:4px solid var(--leaf);
+    padding:18px 22px;border-radius:0 12px 12px 0;color:var(--muted);
+    font-family:"Cormorant Garamond",serif;font-size:1.2rem;font-style:italic;
+    box-shadow:0 3px 14px rgba(31,77,58,.06);
+  }
+
+  /* ---------- Banners de capítulo ---------- */
+  .block-banner{
+    position:relative;overflow:hidden;
+    background:linear-gradient(135deg, #1F4D3A 0%, #356148 100%);
+    color:#f3f5ee;border-radius:16px;
+    padding:26px 24px;margin:60px 0 14px;text-align:center;
+    border:1px solid rgba(198,161,91,.4);
+    box-shadow:0 10px 26px rgba(31,77,58,.22);
+  }
+  .block-banner::before,.block-banner::after{
+    content:"❧";position:absolute;top:50%;transform:translateY(-50%);
+    color:var(--gold-soft);opacity:.55;font-size:1.4rem;
+  }
+  .block-banner::before{left:20px;}
+  .block-banner::after{right:20px;transform:translateY(-50%) scaleX(-1);}
+  .block-banner .n{
+    display:block;font-family:"Inter",sans-serif;font-size:.74rem;letter-spacing:3px;
+    color:var(--gold-soft);text-transform:uppercase;margin-bottom:4px;
+  }
+  .block-banner h2{
+    font-family:"Playfair Display",serif;color:#fdfbf4;border:none;margin:2px 0 0;
+    font-size:1.7rem;padding:0;
+  }
+  .block-banner h2::after{display:none;}
+
+  /* ---------- Fichas botánicas ---------- */
+  .card{
+    position:relative;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 28px 26px;margin:24px 0;
+    box-shadow:0 6px 20px rgba(31,77,58,.07);
+  }
+  /* filo vegetal lateral */
+  .card::before{
+    content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:4px;
+    background:linear-gradient(180deg,var(--leaf),var(--sage));
+  }
+  .card h3{
+    margin-top:0;padding-bottom:10px;display:flex;align-items:baseline;gap:10px;
+    border-bottom:1px solid var(--line);
+  }
+  .card h3::before{
+    content:"❀";color:var(--gold);font-size:1rem;flex:0 0 auto;
+  }
+  .botanical{color:var(--leaf);font-style:italic;font-size:.95rem;font-family:"Cormorant Garamond",serif;font-weight:500;letter-spacing:.3px;}
+
+  ul{margin:.4em 0 .9em;padding-left:1.3em;}
+  li{margin:.26em 0;}
+  ul li::marker{color:var(--leaf);}
+  ol li::marker{color:var(--leaf);font-weight:600;}
+
+  /* ---------- Tablas de herbolaria ---------- */
+  table{
+    width:100%;border-collapse:separate;border-spacing:0;margin:18px 0;font-size:.92rem;
+    background:var(--paper);border-radius:12px;overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 4px 16px rgba(31,77,58,.06);
+  }
+  th{
+    background:linear-gradient(135deg,var(--forest),#2c6347);color:#f3f5ee;text-align:left;
+    padding:11px 13px;font-weight:600;font-family:"Inter",sans-serif;font-size:.82rem;
+    letter-spacing:.4px;text-transform:uppercase;
+  }
+  td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even) td, tr:nth-child(even) td{background:var(--mint);}
+  tr:hover td{background:#dcebd4;}
+  td em,th em{font-style:italic;}
+  table strong{color:var(--forest);}
+
+  /* ---------- Cuadro "Para recordar" ---------- */
+  .key{
+    position:relative;
+    background:linear-gradient(180deg,#fff,var(--mint));
+    border:1px solid var(--sage);border-left:5px solid var(--leaf);
+    border-radius:12px;padding:16px 20px 16px;margin:20px 0 4px;
+    box-shadow:0 3px 12px rgba(31,77,58,.06);
+  }
+  .key .key-title{
+    font-family:"Inter",sans-serif;font-weight:600;color:var(--forest);
+    display:block;margin-bottom:8px;letter-spacing:.3px;
+  }
+  .key ul{margin:0;padding-left:1.2em;}
+  .key ul li::marker{color:var(--leaf);}
+
+  /* ---------- Cuadro de autoevaluación ---------- */
+  .quiz{
+    position:relative;
+    background:linear-gradient(180deg,#fbfdf9,var(--mint));
+    border:1px solid var(--sage);border-radius:14px;
+    padding:20px 24px;margin:26px 0;
+    box-shadow:0 4px 16px rgba(31,77,58,.07);
+  }
+  .quiz::before{
+    content:"";position:absolute;top:0;left:24px;right:24px;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+  .quiz h4{color:var(--forest);margin-top:6px;font-size:.9rem;}
+  .quiz h4::before{background:var(--gold);}
+  .quiz ol{margin:.5em 0;padding-left:1.3em;}
+  .quiz li{margin:.45em 0;}
+
+  /* ---------- Nota glosario ---------- */
+  .note{background:var(--beige);border-radius:8px;padding:7px 13px;display:inline-block;font-size:.9rem;color:var(--muted);border:1px solid var(--gold-soft);}
+
+  /* ---------- Solucionario ---------- */
+  .answers{
+    background:linear-gradient(180deg,#fffdf8,#f4efe2);
+    border:1px solid var(--gold-soft);border-radius:16px;padding:10px 28px 22px;margin-top:30px;
+    box-shadow:0 5px 18px rgba(198,161,91,.1);
+  }
+  .answers h3{color:var(--gold);}
+  .answers h2{color:var(--forest);}
+
+  .footer{
+    margin-top:56px;padding-top:22px;color:var(--muted);font-size:.85rem;font-style:italic;text-align:center;
+    border-top:none;position:relative;
+  }
+  .footer::before{
+    content:"❧";display:block;color:var(--gold);font-size:1.4rem;font-style:normal;margin-bottom:10px;
+  }
+
+  hr{border:none;border-top:1px solid var(--line);margin:26px 0;}
+
+  /* ---------- Índice ---------- */
+  .toc{
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 28px;margin:28px 0;
+    box-shadow:0 4px 16px rgba(31,77,58,.06);
+  }
+  .toc h2{margin-top:6px;font-size:1.5rem;border:none;}
+  .toc h2::after{display:none;}
+  .toc ol{columns:2;column-gap:36px;padding-left:1.2em;}
+  .toc a{text-decoration:none;color:var(--ink);}
+  .toc a:hover{color:var(--leaf);}
+  .toc li::marker{color:var(--gold);}
+
+  /* ---------- Índice imprimible (números de página vía Paged.js) ---------- */
+  nav.toc-print{display:none;}
+  nav.toc-print h2{margin-top:0;}
+  .toc-print ol{list-style:none;padding:0;margin:14px 0 0;}
+  .toc-print li{margin:.5em 0;}
+  .toc-print .group{font-family:"Inter",sans-serif;text-transform:uppercase;letter-spacing:1.4px;font-size:.72rem;color:var(--gold);margin:20px 0 8px;font-weight:600;}
+  .toc-print a{display:flex;align-items:baseline;text-decoration:none;color:var(--ink);font-family:"Cormorant Garamond",serif;font-size:1.18rem;}
+  .toc-print a .t{white-space:nowrap;}
+  .toc-print a .dots{flex:1 1 auto;margin:0 8px;border-bottom:2px dotted var(--line-strong);transform:translateY(-4px);}
+  .toc-print a::after{content:target-counter(attr(href), page);font-family:"Inter",sans-serif;font-size:.9rem;color:var(--leaf);font-weight:600;}
+
+  @media (max-width:620px){
+    body{font-size:16px;}
+    .cover{padding:54px 16px 46px;}
+    .cover h1{font-size:2.1rem;}
+    .cover .sub{font-size:1.15rem;}
+    .cover-frame{padding:24px 14px 22px;}
+    h2{font-size:1.7rem;}
+    .card{padding:20px 18px 22px;}
+    .toc ol{columns:1;}
+    table{font-size:.86rem;}
+    th,td{padding:8px 9px;}
+  }
+
+  /* ====================================================================
+     IMPRESIÓN / PDF — A4 vertical (portrait), maquetación editorial.
+     margin:0 en @page elimina los encabezados/pies que Chrome añade
+     (fecha, hora, título y ruta file:///…). El aire de página se recrea
+     con padding interno en .wrap y .cover.
+     ==================================================================== */
+  @page{
+    size:A4 portrait;
+    margin:0;
+  }
+  /* Márgenes editoriales solo cuando Paged.js pagina el documento */
+  @page paged{
+    margin:18mm 16mm 20mm;
+    @top-right{ content:"Manual del Estudiante · 17 Condimentos Ayurvédicos"; font-family:"Inter",sans-serif; font-size:8pt; color:#5d6657; letter-spacing:.4px; }
+    @bottom-center{ content:"Página " counter(page); font-family:"Inter",sans-serif; font-size:8.5pt; color:#5d6657; }
+    @bottom-right{ content:"Curso de Masalas"; font-family:"Inter",sans-serif; font-size:8pt; color:#9bb293; }
+  }
+  @page cover{ margin:0; }
+
+  @media print{
+    html,body{background:#fff;background-image:none;}
+    body{font-size:11pt;}
+    .wrap{max-width:none;padding:18mm 16mm 20mm;}
+    .no-print{display:none !important;}
+    a{color:var(--ink);text-decoration:none;}
+
+    /* ---- PORTADA a página completa ---- */
+    .cover{
+      page:cover;
+      background:linear-gradient(165deg,#1F4D3A,#3f7553) !important;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+      border-radius:0;margin:0;border-bottom:none;
+      min-height:100vh;min-height:297mm;
+      display:flex;align-items:center;justify-content:center;
+      padding:20mm 16mm;
+      break-after:page;page-break-after:always;
+    }
+
+    /* ---- ÍNDICE imprimible (solo en PDF), en su propia página ---- */
+    nav.toc-print{display:block;break-before:page;break-after:page;}
+
+    /* ---- Cada título principal empieza en página nueva ---- */
+    section#uso, section#glosario, section#tabla,
+    .block-banner, article.card,
+    section#solucionario, section#apendice{
+      break-before:page;page-break-before:always;
+    }
+    /* El primer condimento de cada bloque acompaña a su banner (evita hoja casi vacía) */
+    .block-banner{break-after:avoid;page-break-after:avoid;}
+    .block-banner + .card{break-before:avoid !important;page-break-before:avoid !important;}
+
+    /* ---- Mantener unidas las unidades visuales; no cortar bloques ---- */
+    .key,.quiz,.lead,.answers,thead,tr,ul,ol{break-inside:avoid;page-break-inside:avoid;}
+    h2,h3,h4,.card h3{break-after:avoid;page-break-after:avoid;}
+    thead{display:table-header-group;}   /* repite encabezado en tablas largas */
+
+    /* aligerar sombras al imprimir */
+    .card,.quiz,.key,.lead,.answers,table,.block-banner{box-shadow:none;}
+
+    /* ---- Conservar la paleta Ayurveda en papel ---- */
+    .cover,.block-banner,.card,.key,.quiz,.lead,.answers,table,th,thead th,tr:nth-child(even) td,.note,.toc-print a::after{
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    }
+  }
+  .printhint{text-align:center;margin:18px 0 0;}
+  .printhint button{
+    background:linear-gradient(135deg,var(--forest),var(--leaf));color:#f3f5ee;border:1px solid var(--gold-soft);
+    border-radius:30px;padding:11px 26px;font-size:.95rem;cursor:pointer;
+    font-family:"Inter",sans-serif;letter-spacing:.3px;
+    box-shadow:0 4px 14px rgba(31,77,58,.25);transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .printhint button:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(31,77,58,.32);}
+  .printhint button{margin:6px 5px;}
+  .printhint .print-steps{max-width:640px;margin:14px auto 0;font-size:.84rem;color:var(--muted);font-style:italic;line-height:1.55;}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-frame">
+    <div class="mandala" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e7d4ad" stroke-width="1.4" stroke-linecap="round">
+          <circle cx="50" cy="50" r="6" fill="none"/>
+          <g>
+            <path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/>
+            <path d="M50 16 L50 30" stroke-width="1"/>
+          </g>
+          <g transform="rotate(60 50 50)">
+            <path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/>
+            <path d="M50 16 L50 30" stroke-width="1"/>
+          </g>
+          <g transform="rotate(120 50 50)">
+            <path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/>
+            <path d="M50 16 L50 30" stroke-width="1"/>
+          </g>
+          <g transform="rotate(180 50 50)">
+            <path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/>
+            <path d="M50 16 L50 30" stroke-width="1"/>
+          </g>
+          <g transform="rotate(240 50 50)">
+            <path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/>
+            <path d="M50 16 L50 30" stroke-width="1"/>
+          </g>
+          <g transform="rotate(300 50 50)">
+            <path d="M50 44 C46 34 46 24 50 16 C54 24 54 34 50 44 Z" fill="rgba(231,212,173,.18)"/>
+            <path d="M50 16 L50 30" stroke-width="1"/>
+          </g>
+          <circle cx="50" cy="50" r="32" stroke-dasharray="1 5" stroke-width="1.1" opacity=".6"/>
+        </g>
+      </svg>
+    </div>
+    <div class="kicker">Complemento del Curso de Masalas</div>
+    <h1>Los 17 Condimentos del Ayurveda</h1>
+    <div class="leaf-divider" aria-hidden="true">❦</div>
+    <p class="sub">Manual del Estudiante — saber clásico de los textos ayurvédicos unido a la validación de la ciencia contemporánea, para comprender, recordar y aplicar.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="printhint no-print">
+    <button onclick="generarPDFpaginado()">📄 Generar manual en PDF (índice + números de página)</button>
+    <button onclick="window.print()" style="background:linear-gradient(135deg,#6b6450,#9bb293);">🖨️ Guardar como PDF (rápido)</button>
+    <p class="print-steps">El PDF ya no debe mostrar la ruta del archivo en el pie. Si aún aparece, desactiva <strong>«Encabezados y pies de página»</strong> en el diálogo de impresión. Elige <strong>A4 · Vertical</strong> y guarda como <strong>Manual_del_Estudiante_17_Condimentos_Ayurvedicos.pdf</strong>.</p>
+  </div>
+
+  <!-- TOC -->
+  <nav class="toc no-print">
+    <h2>Contenido</h2>
+    <ol>
+      <li><a href="#uso">Cómo usar este manual</a></li>
+      <li><a href="#glosario">Glosario de términos clave</a></li>
+      <li><a href="#tabla">Tabla de síntesis energética</a></li>
+      <li><a href="#b1">Bloque 1 · Calor digestivo</a></li>
+      <li><a href="#b2">Bloque 2 · Raíces y resinas</a></li>
+      <li><a href="#b3">Bloque 3 · Aromáticas de finalización</a></li>
+      <li><a href="#b4">Bloque 4 · El cilantro</a></li>
+      <li><a href="#solucionario">Solucionario</a></li>
+      <li><a href="#apendice">Apéndice culinario</a></li>
+    </ol>
+  </nav>
+
+  <!-- ÍNDICE IMPRIMIBLE (visible solo en PDF, con números de página) -->
+  <nav class="toc-print" aria-label="Índice">
+    <h2>Índice</h2>
+    <div class="group">Fundamentos</div>
+    <ol>
+      <li><a href="#uso"><span class="t">Cómo usar este manual</span><span class="dots"></span></a></li>
+      <li><a href="#glosario"><span class="t">Glosario de términos clave</span><span class="dots"></span></a></li>
+      <li><a href="#tabla"><span class="t">Tabla de síntesis energética</span><span class="dots"></span></a></li>
+    </ol>
+    <div class="group">Bloque 1 · Especias del calor digestivo</div>
+    <ol>
+      <li><a href="#f1"><span class="t">1 · Cúrcuma — Haridrā</span><span class="dots"></span></a></li>
+      <li><a href="#f2"><span class="t">2 · Páprika dulce — Laṅkā</span><span class="dots"></span></a></li>
+      <li><a href="#f3"><span class="t">3 · Pimienta negra — Marica</span><span class="dots"></span></a></li>
+      <li><a href="#f4"><span class="t">4 · Mostaza negra — Rājikā</span><span class="dots"></span></a></li>
+      <li><a href="#f5"><span class="t">5 · Mostaza amarilla — Siddhārtha</span><span class="dots"></span></a></li>
+      <li><a href="#f6"><span class="t">6 · Comino — Jīraka</span><span class="dots"></span></a></li>
+    </ol>
+    <div class="group">Bloque 2 · Raíces, resinas y tónicos profundos</div>
+    <ol>
+      <li><a href="#f7"><span class="t">7 · Jengibre seco — Śuṇṭhī</span><span class="dots"></span></a></li>
+      <li><a href="#f8"><span class="t">8 · Romero en polvo — Rujamarī</span><span class="dots"></span></a></li>
+      <li><a href="#f9"><span class="t">9 · Fenogreco — Methikā</span><span class="dots"></span></a></li>
+      <li><a href="#f10"><span class="t">10 · Azafétida — Hiṅgu</span><span class="dots"></span></a></li>
+    </ol>
+    <div class="group">Bloque 3 · Aromáticas de finalización</div>
+    <ol>
+      <li><a href="#f11"><span class="t">11 · Clavo — Lavaṅga</span><span class="dots"></span></a></li>
+      <li><a href="#f12"><span class="t">12 · Canela — Tvak</span><span class="dots"></span></a></li>
+      <li><a href="#f13"><span class="t">13 · Nuez moscada — Jātīphala</span><span class="dots"></span></a></li>
+      <li><a href="#f14"><span class="t">14 · Anís estrellado — Cakra Phūl</span><span class="dots"></span></a></li>
+      <li><a href="#f15"><span class="t">15 · Cardamomo verde — Sūkṣma Elā</span><span class="dots"></span></a></li>
+    </ol>
+    <div class="group">Bloque 4 · El cilantro: una planta, dos medicinas</div>
+    <ol>
+      <li><a href="#f16"><span class="t">16 · Semillas de cilantro — Dhānyaka</span><span class="dots"></span></a></li>
+      <li><a href="#f17"><span class="t">17 · Hojas de cilantro — Kustumburu</span><span class="dots"></span></a></li>
+    </ol>
+    <div class="group">Cierre</div>
+    <ol>
+      <li><a href="#solucionario"><span class="t">Solucionario</span><span class="dots"></span></a></li>
+      <li><a href="#apendice"><span class="t">Apéndice · Dinámica de acción culinaria</span><span class="dots"></span></a></li>
+    </ol>
+  </nav>
+
+  <!-- CÓMO USAR -->
+  <section id="uso">
+    <h2>Cómo usar este manual</h2>
+    <ol>
+      <li><strong>Empieza por el glosario.</strong> No necesitas saber sánscrito: en este manual primero te explicamos cada idea en español y luego te mostramos su nombre tradicional entre paréntesis. Por ejemplo, "fuego digestivo (Agni)". Así entiendes el concepto y, de paso, aprendes la palabra ayurvédica.</li>
+      <li><strong>Usa la tabla de síntesis</strong> como un mapa rápido para consultar mientras cocinas.</li>
+      <li><strong>Estudia cada ficha</strong> prestando atención al cuadro 🔑 <em>Para recordar</em>, que resume lo más importante.</li>
+      <li><strong>Pon a prueba lo aprendido</strong> con las preguntas de Autoevaluación de cada bloque. Las respuestas están al final, en el solucionario.</li>
+    </ol>
+  </section>
+
+  <!-- GLOSARIO -->
+  <section id="glosario">
+    <h2>Glosario de términos clave</h2>
+    <p class="lead">Antes de leer las fichas, familiarízate con estas pocas palabras. No hay que memorizarlas: son simplemente la forma en que el Ayurveda describe cómo actúa cada alimento en el cuerpo. Aquí tienes la idea en español y, al lado, su nombre tradicional.</p>
+
+    <h3>Las cinco características de una sustancia (Rasa Panchaka)</h3>
+    <table>
+      <tr><th>Término</th><th>Significado</th><th>Para qué sirve</th></tr>
+      <tr><td><strong>Rasa</strong></td><td>Sabor que percibimos en la lengua</td><td>Da la primera acción de la especia. Hay 6 sabores.</td></tr>
+      <tr><td><strong>Guna</strong></td><td>Cualidad física (ligera/pesada, seca/untuosa…)</td><td>Describe cómo "se siente" la sustancia en el cuerpo.</td></tr>
+      <tr><td><strong>Virya</strong></td><td>Potencia energética o efecto térmico de la sustancia</td><td>Indica si <strong>calienta</strong> (<em>Ushna</em>) o <strong>enfría</strong> (<em>Sheeta</em>).</td></tr>
+      <tr><td><strong>Vipaka</strong></td><td>Efecto que produce una vez terminada la digestión</td><td>La acción profunda y duradera en los tejidos.</td></tr>
+      <tr><td><strong>Prabhava</strong></td><td>Efecto único que no se explica por el sabor ni la potencia</td><td>La "magia" particular de una planta.</td></tr>
+    </table>
+
+    <h3>Los 6 sabores básicos (Rasa)</h3>
+    <table>
+      <tr><th>Sánscrito</th><th>Sabor</th><th>Sánscrito</th><th>Sabor</th></tr>
+      <tr><td><strong>Madhura</strong></td><td>Dulce</td><td><strong>Katu</strong></td><td>Picante</td></tr>
+      <tr><td><strong>Amla</strong></td><td>Ácido / Agrio</td><td><strong>Tikta</strong></td><td>Amargo</td></tr>
+      <tr><td><strong>Lavana</strong></td><td>Salado</td><td><strong>Kashaya</strong></td><td>Astringente</td></tr>
+    </table>
+
+    <h3>Las tres energías del cuerpo (los Doshas)</h3>
+    <p>Según el Ayurveda, todo cuerpo combina tres energías. Conocerlas te ayuda a elegir las especias que te equilibran.</p>
+    <table>
+      <tr><th>Energía (Dosha)</th><th>Elementos</th><th>De qué se encarga y cómo es</th></tr>
+      <tr><td><strong>Vata</strong></td><td>Aire + Éter</td><td>Energía del <strong>movimiento</strong> y la regulación. Seco, ligero, frío, móvil.</td></tr>
+      <tr><td><strong>Pitta</strong></td><td>Fuego + Agua</td><td>Energía de la <strong>transformación, el metabolismo y el calor</strong>. Caliente, agudo, líquido; gobierna la digestión.</td></tr>
+      <tr><td><strong>Kapha</strong></td><td>Tierra + Agua</td><td>Energía de la <strong>estructura, la estabilidad y la lubricación</strong>. Pesado, húmedo, frío, estable.</td></tr>
+    </table>
+
+    <h3>Cómo leer la acción sobre las energías del cuerpo (Doshas)</h3>
+    <ul>
+      <li><strong>V- / P- / K-</strong> = <strong>reduce o pacifica</strong> ese dosha.</li>
+      <li><strong>V+ / P+ / K+</strong> = <strong>aumenta o agrava</strong> ese dosha.</li>
+      <li><strong>V=</strong> = efecto <strong>neutro</strong>.</li>
+      <li><strong>Tridóshico</strong> = equilibra los tres (en dosis adecuadas).</li>
+    </ul>
+    <p><span class="note">Ejemplo: <strong>"VK-, P+"</strong> significa <strong>reduce Vata y Kapha, pero aumenta Pitta</strong>.</span></p>
+
+    <h3>Otros términos esenciales</h3>
+    <table>
+      <tr><th>Término</th><th>Significado</th></tr>
+      <tr><td><strong>Agni</strong></td><td>Fuego digestivo: la capacidad del cuerpo de transformar y digerir los alimentos.</td></tr>
+      <tr><td><strong>Ama</strong></td><td>Residuos de una digestión incompleta que se acumulan en el cuerpo (lo que solemos llamar "toxinas").</td></tr>
+      <tr><td><strong>Deepana</strong></td><td>Que activa la digestión: despierta el apetito y el fuego digestivo (Agni).</td></tr>
+      <tr><td><strong>Pachana</strong></td><td>Que ayuda a quemar y transformar los residuos digestivos (Ama).</td></tr>
+      <tr><td><strong>Doshashamaka</strong></td><td>El efecto de una sustancia sobre las tres energías del cuerpo (los doshas).</td></tr>
+      <tr><td><strong>Samyoga</strong></td><td>Combinación clásica de ingredientes que potencia el efecto.</td></tr>
+      <tr><td><strong>Yogavahi</strong></td><td>Ingrediente "catalizador" que transporta y potencia a otras sustancias.</td></tr>
+      <tr><td><strong>Tadka</strong></td><td>Templar especias en grasa caliente para liberar su sabor.</td></tr>
+      <tr><td><strong>Srotas</strong></td><td>Canales o conductos del cuerpo.</td></tr>
+      <tr><td><strong>Dhatus</strong></td><td>Tejidos corporales profundos.</td></tr>
+      <tr><td><strong>Ojas</strong></td><td>Esencia vital de inmunidad, vigor y reserva profunda.</td></tr>
+      <tr><td><strong>Tejas</strong></td><td>Esencia sutil del fuego; claridad y discernimiento.</td></tr>
+      <tr><td><strong>Prana</strong></td><td>Energía vital; fuerza viva de un alimento fresco.</td></tr>
+      <tr><td><strong>Sattva / Rajas / Tamas</strong></td><td>Cualidades de la mente: pureza/calma, actividad/pasión, inercia/pesadez.</td></tr>
+    </table>
+  </section>
+
+  <!-- TABLA SÍNTESIS -->
+  <section id="tabla">
+    <h2>Tabla de síntesis energética de los 17 condimentos</h2>
+    <p>Úsala como mapa de consulta rápida mientras cocinas. Cada columna resume una de las características que viste en el glosario; si alguna palabra te suena nueva, vuelve a esa sección.</p>
+    <table>
+      <tr><th>#</th><th>Condimento</th><th>Sánscrito</th><th>Sabor (Rasa)</th><th>Potencia (Virya)</th><th>Efecto final (Vipaka)</th><th>Energías (Doshas)</th></tr>
+      <tr><td>1</td><td>Cúrcuma</td><td><em>Haridra</em></td><td>Tikta (Amargo), Katu (Picante)</td><td>Ushna (Caliente)</td><td>Katu</td><td>Tridóshico (KP-, V=)</td></tr>
+      <tr><td>2</td><td>Páprika dulce</td><td><em>Lanka</em></td><td>Katu (Picante), Madhura (Dulce)</td><td>Ushna (Moderado)</td><td>Katu</td><td>VK-, P+ (en exceso)</td></tr>
+      <tr><td>3</td><td>Pimienta negra</td><td><em>Maricha</em></td><td>Katu (Picante)</td><td>Ushna (Caliente)</td><td>Katu</td><td>VK-, P+</td></tr>
+      <tr><td>4</td><td>Mostaza negra</td><td><em>Rajika</em></td><td>Katu (Picante), Tikta (Amargo)</td><td>Ushna (Muy caliente)</td><td>Katu</td><td>VK-, P+ (marcado)</td></tr>
+      <tr><td>5</td><td>Mostaza amarilla</td><td><em>Siddhartha</em></td><td>Katu (Picante), Tikta (Amargo), Madhura (Dulce)</td><td>Ushna (Caliente)</td><td>Katu</td><td>VK-, P+ (moderado)</td></tr>
+      <tr><td>6</td><td>Comino</td><td><em>Jeeraka</em></td><td>Katu (Picante), Tikta (Amargo)</td><td>Ushna (Caliente)</td><td>Katu</td><td>VK-, P+ (en exceso)</td></tr>
+      <tr><td>7</td><td>Jengibre seco</td><td><em>Shunthi</em></td><td>Katu (Picante)</td><td>Ushna (Caliente)</td><td>Madhura</td><td>VK-, P+ (suave)</td></tr>
+      <tr><td>8</td><td>Romero en polvo</td><td><em>Rujamari</em></td><td>Tikta (Amargo), Kashaya (Astringente), Katu (Picante)</td><td>Ushna (Caliente)</td><td>Katu</td><td>VK-, P+ (moderado)</td></tr>
+      <tr><td>9</td><td>Fenogreco</td><td><em>Methika</em></td><td>Tikta (Amargo), Katu (Picante), Madhura (Dulce)</td><td>Ushna (Caliente)</td><td>Katu</td><td>K-, V- (mod.), P+</td></tr>
+      <tr><td>10</td><td>Azafétida</td><td><em>Hingu</em></td><td>Katu (Picante)</td><td>Ushna (Caliente)</td><td>Katu</td><td>VK-, P+</td></tr>
+      <tr><td>11</td><td>Clavo</td><td><em>Lavanga</em></td><td>Katu (Picante), Tikta (Amargo)</td><td><strong>Sheeta (Frío) / Ushna (según la escuela)</strong></td><td>Katu</td><td>VK-, P- (dosis pequeñas)</td></tr>
+      <tr><td>12</td><td>Canela</td><td><em>Tvak</em></td><td>Katu (Picante), Madhura (Dulce), Tikta (Amargo)</td><td>Ushna (Caliente)</td><td>Katu</td><td>VK-, P+ (en exceso)</td></tr>
+      <tr><td>13</td><td>Nuez moscada</td><td><em>Jātīphala</em></td><td>Katu (Picante), Tikta (Amargo), Kashaya (Astringente)</td><td>Ushna (Caliente)</td><td>Katu</td><td>VK-, P+</td></tr>
+      <tr><td>14</td><td>Anís estrellado</td><td><em>Chakraphool</em></td><td>Madhura (Dulce), Katu (Picante)</td><td>Ushna (Caliente)</td><td>Katu</td><td>VK-, P+ (moderado)</td></tr>
+      <tr><td>15</td><td>Cardamomo</td><td><em>Sukshma Ela</em></td><td>Katu (Picante), Tikta (Amargo), Madhura (Dulce)</td><td><strong>Sheeta (Frío)</strong></td><td>Madhura</td><td>Tridóshico (Pitta- supremo)</td></tr>
+      <tr><td>16</td><td>Semillas de cilantro</td><td><em>Dhanyaka</em></td><td>Madhura (Dulce), Tikta (Amargo), Kashaya (Astringente), Katu (Picante)</td><td><strong>Sheeta (Frío)</strong></td><td>Madhura</td><td>Tridóshico (P- supremo)</td></tr>
+      <tr><td>17</td><td>Hojas de cilantro</td><td><em>Kustumburu</em></td><td>Tikta (Amargo), Kashaya (Astringente), Madhura (Dulce)</td><td><strong>Sheeta (Frío)</strong></td><td>Madhura</td><td>Tridóshico (P- supremo; V+ en exceso)</td></tr>
+    </table>
+  </section>
+
+  <!-- BLOQUE 1 -->
+  <div class="block-banner" id="b1"><span class="n">Bloque 1</span><h2>Especias del calor digestivo</h2></div>
+
+  <article class="card">
+    <h3 id="f1">Ficha 1 · Cúrcuma (<em>Haridrā</em>)</h3>
+    <p class="botanical">Curcuma longa — Familia Zingiberaceae · <em>Haridrā</em>, "la que mejora el color de la piel"</p>
+    <h4>Descripción general</h4>
+    <p>Fundamental en la terapéutica y la cocina por sus potentes efectos depurativos sobre la sangre y los tejidos.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Amargo (Tikta), Picante (Kaṭu)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Seca (Rūkṣa), Ligera (Laghu)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Tridóshica: reduce Kapha y Pitta y es neutral sobre Vata (Kapha y Pitta −, Vāta =). Por su cualidad seca, conviene cocinarla con grasa para no agravar a Vata.</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Viṣaghna (destruye toxinas), Lekhana (raspa los excesos) y Kuṣṭhaghna (mejora las enfermedades de la piel; este es su efecto especial o <em>Prabhāva</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Circulatorio:</strong> ayuda a purificar la sangre (en Ayurveda, <em>Rakta-shodhaka</em>).</li>
+      <li><strong>Digestivo:</strong> protege el hígado, aviva el fuego digestivo (Agni) y ayuda a quemar los residuos de una digestión incompleta (Ama), un proceso llamado <em>Ama-pachana</em>.</li>
+      <li><strong>Inmunitario</strong> y <strong>Tegumentario (la piel):</strong> favorece la salud y el brillo de la piel.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Limpia la mente de impresiones densas. Aumenta la claridad y el discernimiento (en Ayurveda, <em>Tejas</em>) y la capacidad de sostener el estrés.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Antiinflamatorio de uso diario. Clásica en granos, legumbres (los guisos de lentejas se llaman <em>dals</em>) y verduras salteadas. Es fundamental cocinarla con un medio graso —ghee (mantequilla clarificada) o aceite— para evitar que agrave a Vata. <strong>Combinación clásica (Samyoga):</strong> cúrcuma + ghee + pimienta negra.</p>
+    <h4>Ciencia moderna y biodisponibilidad</h4>
+    <p>Sus curcuminoides modulan marcadores proinflamatorios (NF-κB, COX-2). Para asimilarla aplica la <strong>Regla de la Tríada</strong>: calor suave + lípido transportador (ghee o aceite de coco) + piperina (pimienta negra).</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>En exceso puede provocar sequedad extrema en los tejidos; por eso se acompaña siempre de algún medio graso.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>Es <strong>tridóshica</strong>: reduce Kapha y Pitta y es neutral sobre Vata.</li>
+        <li>Nunca la tomes "sola": necesita <strong>calor + grasa + pimienta negra</strong> (la grasa también evita que reseque y agrave a Vata).</li>
+        <li>La gran purificadora de la sangre y del hígado.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f2">Ficha 2 · Páprika dulce (<em>Laṅkā</em>)</h3>
+    <p class="botanical">Capsicum annuum — Familia Solanaceae · <em>Laṅkā</em>, "ají dulce"</p>
+    <h4>Descripción general</h4>
+    <p>Estimulante suave y periférico que aporta color y una penetración térmica sutil, sin la agresividad de los chiles picantes.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu), con un matiz dulce (Madhura)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Ligera (Laghu), Seca (Rūkṣa)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente moderada (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; aumenta Pitta solo en exceso (Vāta y Kapha −, Pitta + en exceso).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Dīpana (estimula el fuego digestivo, <em>Agni</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Cardiovascular:</strong> estimula la circulación; cardioprotectora.</li>
+      <li><strong>Digestivo:</strong> estimulante suave del Agni; evita la flatulencia sin inflamar la mucosa.</li>
+      <li><strong>Visual:</strong> por sus carotenoides.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Aumenta el entusiasmo y el vigor físico (equilibra la energía de la actividad y el dinamismo, en Ayurveda <em>Rajas</em>). Ideal para el letargo emocional de tipo Kapha.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Su predominio dulce (Madhura) frente a otros ajíes suaviza su penetración; es ideal en cocciones invernales. Aporta color y una nota terrosa y dulce a los guisos de legumbres y tubérculos. <strong>Efecto de la cocción:</strong> es muy sensible al calor (termolábil); a fuego alto sus azúcares se caramelizan y se queman, amargando el plato. Por eso, <strong>añádela siempre al final.</strong></p>
+    <h4>Ciencia moderna</h4>
+    <p>Carotenoides (capsantina, capsorubina) y vitaminas A y C: potente antioxidante celular.</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>En personas de constitución Pitta puede exacerbar problemas de sangrado o hiperacidez.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>El "color amable": calienta poco y casi no agrava a Pitta (salvo en exceso).</li>
+        <li><strong>Regla de oro:</strong> se quema con facilidad → <strong>siempre al final</strong>.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f3">Ficha 3 · Pimienta negra (<em>Marica</em>)</h3>
+    <p class="botanical">Piper nigrum — Familia Piperaceae · <em>Marica</em>, "la que disipa"</p>
+    <h4>Descripción general</h4>
+    <p>Agente catalizador clave que mejora la asimilación profunda de los alimentos y erradica el letargo digestivo.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Penetrante (Tīkṣṇa), Ligera (Laghu)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; aumenta directamente a Pitta (Vāta y Kapha −, Pitta +).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Pramāthī (abre y limpia los canales del cuerpo) y Yogavāhī (catalizador que potencia a otras sustancias; este es su efecto especial o <em>Prabhāva</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Digestivo:</strong> potente estimulante enzimático; combate la pesadez y destruye toxinas.</li>
+      <li><strong>Respiratorio:</strong> elimina la mucosidad pulmonar.</li>
+      <li><strong>Circulatorio:</strong> vasodilatación y transpiración (<em>diaforesis</em>).</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Combate el embotamiento, agudiza la concentración y promueve el valor. Disipa la pesadez y la inercia mental (en Ayurveda, <em>Tamas</em>).</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Aumenta enormemente la biodisponibilidad de otras especias; es esencial en caldos curativos para resfriados. Equilibra alimentos fríos o pesados (queso, tubérculos). <strong>Ingrediente catalizador (Yogavāhī):</strong> se considera un vehículo excepcional que potencia la asimilación de cualquier otra hierba o alimento con el que se mezcle.</p>
+    <h4>Ciencia moderna</h4>
+    <p>Su alcaloide, la <strong>piperina</strong>, inhibe la glucuronidación, la CYP3A4 y la glicoproteína-P (P-gp), elevando hasta <strong>2000%</strong> la absorción de fitonutrientes como la curcumina.</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Agrava las afecciones gástricas ulcerativas; precaución en personas calurosas o irritables (Pitta).</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>Pequeña cantidad, gran efecto: el <strong>catalizador maestro</strong> (Yogavāhī).</li>
+        <li>Pareja inseparable de la <strong>cúrcuma</strong>.</li>
+        <li>Aumenta Pitta: prudencia en personas calurosas/irritables.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f4">Ficha 4 · Mostaza negra (<em>Rājikā</em>)</h3>
+    <p class="botanical">Brassica nigra — Familia Brassicaceae · <em>Rājikā</em>, "la que estimula"</p>
+    <h4>Descripción general</h4>
+    <p>Rompedor drástico de los estancamientos; se usa con frecuencia para estimular el fuego digestivo (Agni) de forma inmediata.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu), Amargo (Tikta)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Penetrante (Tīkṣṇa), Untuosa (Snigdha)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Muy caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; <strong>aumenta marcadamente a Pitta</strong> (Vāta y Kapha −, Pitta + marcado).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Śothahara (reduce la inflamación y el edema local).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Digestivo:</strong> estimula bilis y enzimas; combate anorexia e hinchazón.</li>
+      <li><strong>Respiratorio:</strong> rompe la congestión de vías altas.</li>
+      <li><strong>Musculoesquelético:</strong> calienta articulaciones frías y rígidas.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Despierta motivación, determinación y extroversión (<em>Rajas</em> activo). Puede irritar si Pitta ya está agravado.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Extremadamente penetrante: las semillas templadas en aceite son excelentes para estimular metabolismos muy lentos. Se <strong>templa en grasa caliente (Tadka)</strong> hasta que las semillas saltan e inflan; así transforma su amargor crudo en aroma tostado y libera sus aceites volátiles.</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Fuerte acción rubefaciente (enrojece la piel); es altamente agravante para Pitta.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>La más "fogosa" de las mostazas → cuidado con Pitta.</li>
+        <li><strong>Técnica:</strong> Tadka → freírla <strong>al inicio</strong> hasta que salte.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f5">Ficha 5 · Mostaza amarilla (<em>Siddhārtha</em>)</h3>
+    <p class="botanical">Sinapis alba — Familia Brassicaceae · <em>Siddhārtha</em>, "la que cumple su propósito"</p>
+    <h4>Descripción general</h4>
+    <p>Alternativa más amable a la mostaza negra: aporta calor sin irritar de forma tan agresiva las mucosas digestivas.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu), Amargo (Tikta), Dulce (Madhura)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Penetrante (Tīkṣṇa); algo más untuosa que la negra</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; aumenta Pitta de forma moderada (Vāta y Kapha −, Pitta + moderado).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Pācana (digiere y transforma las toxinas, <em>Ama</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Digestivo:</strong> asimilación suave de nutrientes.</li>
+      <li><strong>Cardiovascular:</strong> tónico cardíaco protector (<em>Hrudya</em>).</li>
+      <li><strong>Tegumentario:</strong> hidratación celular; ideal para masajes de piel.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Energía estabilizadora: calma la agitación mental y promueve un estado de alerta saludable.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Ideal para fermentos y aderezos digestivos en constituciones Vata-Kapha. Sabor más suave y untuoso. Preferida para <strong>encurtidos, aderezos fríos y mezclas de especias (masalas) más sutiles</strong>.</p>
+    <h4>Ciencia moderna</h4>
+    <p>Rica en ácidos grasos esenciales (omega-3 y -6) y tocoferoles (vitamina E): apoyan la función cognitiva y protegen las membranas celulares.</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Consumir con moderación en climas muy cálidos.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>"La mostaza amable": más suave y untuosa que la negra.</li>
+        <li>Reina de <strong>encurtidos y aderezos fríos</strong>.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f6">Ficha 6 · Comino (<em>Jīraka</em>)</h3>
+    <p class="botanical">Cuminum cyminum — Familia Apiaceae · <em>Jīraka</em>, "lo que promueve la digestión"</p>
+    <h4>Descripción general</h4>
+    <p>Uno de los mejores remedios para el control de gases y la corrección del tránsito intestinal irregular.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu), Amargo (Tikta)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Seca (Rūkṣa), Ligera (Laghu)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; aumenta Pitta en exceso (Vāta y Kapha −, Pitta + en exceso). <strong>No es un equilibrador absoluto:</strong> aunque es un digestivo cálido muy valioso, en exceso o en seco puede agravar a Pitta.</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Grāhī (absorbente intestinal), Dīpana (estimulante digestivo) y Garbhāśayaviśodhana (limpia el útero; este es su efecto especial o <em>Prabhāva</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Digestivo:</strong> estimula jugos pancreáticos y biliares; combate cólicos; neutraliza la acidez (alcalino).</li>
+      <li><strong>Inmunitario</strong> y <strong>Sanguíneo:</strong> excelente aporte de hierro biodisponible.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Enraíza la mente dispersa (Vata), calma la ansiedad digestiva y aporta estabilidad.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Excelente para secar el exceso de humedad digestiva. Se <strong>tuesta en seco</strong> antes de moler para lograr notas ahumadas; es muy recomendable tostarlo en ghee (técnica de cocción o <em>Samskāra</em>) para moderar su sequedad. <strong>Combinación clásica (Samyoga):</strong> la infusión CCF (comino, coriandro e hinojo a partes iguales).</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>No es un equilibrador "absoluto". Si se abusa de él en seco, su calor interno puede causar inflamación o agravar a Pitta.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>Digestivo estrella, pero <strong>no es tridóshico absoluto</strong>: en exceso agrava a Pitta.</li>
+        <li>Tuéstalo en seco (mejor aún en ghee) para potenciar su aroma y suavizar su sequedad.</li>
+        <li>Integra la tríada <strong>CCF</strong> (Comino · Coriandro · Hinojo).</li>
+      </ul>
+    </div>
+  </article>
+
+  <div class="quiz">
+    <h4>✍️ Autoevaluación — Bloque 1</h4>
+    <ol>
+      <li>¿Por qué la cúrcuma necesita pimienta negra y grasa para ser eficaz? Nombra la "regla" que lo describe.</li>
+      <li>¿Cuál es el error de cocción más común con la <strong>páprika dulce</strong> y cómo se evita?</li>
+      <li>¿Qué significa que la pimienta negra sea un <strong>Yogavahi</strong>?</li>
+      <li>Entre mostaza negra y amarilla, ¿cuál agrava más a <strong>Pitta</strong> y cuál usarías en un encurtido frío?</li>
+      <li>¿Qué especia de este bloque es claramente <strong>tridóshica</strong> y por qué el <strong>comino</strong> no debe considerarse un equilibrador absoluto?</li>
+    </ol>
+  </div>
+
+  <!-- BLOQUE 2 -->
+  <div class="block-banner" id="b2"><span class="n">Bloque 2</span><h2>Raíces, resinas y tónicos profundos</h2></div>
+
+  <article class="card">
+    <h3 id="f7">Ficha 7 · Jengibre seco (<em>Śuṇṭhī / Mahauṣadhi</em>)</h3>
+    <p class="botanical">Zingiber officinale — Familia Zingiberaceae · <em>Śuṇṭhī</em>, "la que es pura"</p>
+    <h4>Descripción general</h4>
+    <p>Medicina fundamental para las inflamaciones crónicas, con la ventaja única de nutrir los tejidos a largo plazo.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Untuosa (Snigdha), Ligera (Laghu)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> <strong>Dulce (Madhura)</strong></li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; aumenta Pitta de forma suave (Vāta y Kapha −, Pitta + suave).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Vṛṣya (afrodisíaco suave), Āmapācana (digiere las toxinas, <em>Ama</em>) y Tṛptighna (elimina la saciedad temprana; este es su efecto especial o <em>Prabhāva</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Digestivo:</strong> carminativo (ayuda a expulsar los gases); absorbente, ayuda a dar consistencia a las heces (en Ayurveda, <em>Grahi</em>); alivia las náuseas.</li>
+      <li><strong>Musculoesquelético:</strong> antiinflamatorio sistémico (dolor articular crónico).</li>
+      <li><strong>Respiratorio.</strong></li>
+    </ul>
+    <h4>Diferencia crítica con el jengibre fresco (<em>Ārdraka</em>)</h4>
+    <p>El fresco es seco, áspero y de <strong>Vipaka picante</strong> → puede irritar a Pitta. El <strong>seco (Śuṇṭhī) es untuoso y de Vipaka dulce</strong> → nutre los tejidos profundos (<em>Dhatus</em>) y calma a Vata sin sobrecalentar.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Tratamiento estándar para la artritis inflamatoria (<em>Āmavāta</em>). A diferencia del jengibre fresco, su <strong>Vipaka dulce (Madhura)</strong> nutre las articulaciones en lugar de resecarlas. Excelente en infusiones, leches especiadas y masalas digestivos.</p>
+    <h4>Ciencia moderna</h4>
+    <p>Shogaoles y gingeroles inhiben las vías COX y LOX, con efecto análogo a los antiinflamatorios (AINEs).</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Las dosis altas pueden resultar muy calientes en temporada de verano.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li><strong>Seco ≠ fresco:</strong> el seco tiene <strong>Vipaka dulce (Madhura)</strong> y es más amable con Pitta; nutre las articulaciones.</li>
+        <li>"Mahauṣadhi" = la gran medicina universal.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f8">Ficha 8 · Romero en polvo (<em>Rujamarī</em>)</h3>
+    <p class="botanical">Salvia rosmarinus — Familia Lamiaceae · <em>Rujamarī</em> (adaptación moderna)</p>
+    <h4>Descripción general</h4>
+    <p>Especia occidental que se integra al paradigma ayurvédico como un potente estimulante mental y circulatorio. Su nombre sánscrito (<em>Rujamarī</em>) es una <strong>adaptación moderna</strong>: no pertenece a los tratados clásicos, sino que se incorpora por su afinidad energética.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Amargo (Tikta), Astringente (Kaṣāya), Picante (Kaṭu)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Seca (Rūkṣa), Penetrante (Tīkṣṇa)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; aumenta Pitta de forma moderada (Vāta y Kapha −, Pitta + moderado).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Medhya (tónico cognitivo, favorece la mente y la memoria).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Nervioso:</strong> estimulante cognitivo; mejora memoria; combate el cansancio intelectual.</li>
+      <li><strong>Digestivo:</strong> estimulante hepático y biliar.</li>
+      <li><strong>Circulatorio:</strong> mejora el flujo periférico y cerebral.</li>
+      <li><strong>Respiratorio:</strong> alivia espasmos bronquiales.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Disipa melancolía y letargo mental. Aporta claridad, confianza y arraigo en el presente.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Infusiones matutinas para el letargo crónico de Kapha, ya que limpia los canales mentales (<em>Manovaha srotas</em>). Molido fino, su sabor es muy concentrado: <strong>úsalo con gran discreción</strong> para que no domine con notas pináceas.</p>
+    <h4>Ciencia moderna</h4>
+    <p>Carnosol, ácido carnósico y ácido rosmarínico: extraordinaria actividad antioxidante y neuroprotectora.</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Evitar en cuadros de hipertensión arterial severa.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>La especia de la <strong>memoria y la claridad mental</strong>.</li>
+        <li>Es una <strong>adaptación moderna</strong> al Ayurveda (no es una especia clásica).</li>
+        <li>En polvo es muy concentrado → <strong>poca cantidad</strong>.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f9">Ficha 9 · Fenogreco (<em>Methikā</em>)</h3>
+    <p class="botanical">Trigonella foenum-graecum — Familia Fabaceae · <em>Methikā</em>, "la que sostiene la mente"</p>
+    <h4>Descripción general</h4>
+    <p>Regulador crítico para los desórdenes metabólicos, especialmente los relacionados con la glucosa y los lípidos.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Amargo (Tikta), Picante (Kaṭu), Dulce (Madhura)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Untuosa (Snigdha), Ligera (Laghu)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Kapha y, en dosis moderadas, también Vata; aumenta Pitta (Kapha −, Vāta − moderado, Pitta +).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Vātānulomana (dirige el Vata hacia abajo, favorece el tránsito) y Pramehaghna (útil en desórdenes metabólicos; este es su efecto especial o <em>Prabhāva</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Digestivo:</strong> tónico amargo; purifica hígado y conductos biliares.</li>
+      <li><strong>Endocrino:</strong> apoya la glucemia y la sensibilidad a la insulina.</li>
+      <li><strong>Reproductor:</strong> galactagogo supremo (favorece la leche materna).</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Su amargor limpia la pesadez Kapha; promueve desapego, introspección y claridad de propósitos.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Equilibrio perfecto de propiedades: raspa los bloqueos de Kapha sin agravar la sequedad de Vata. Las decocciones nocturnas ayudan a regular el metabolismo del azúcar. <strong>Tuéstalo ligeramente en ghee</strong> antes de molerlo: reduce el amargor crudo y libera notas tipo jarabe de arce.</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Tiene un potencial uterotónico (estimula el útero); se exige moderación extrema durante el embarazo temprano.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>Amigo del <strong>azúcar en sangre</strong> y de la <strong>lactancia</strong>.</li>
+        <li>Tuéstalo poco: si se quema, <strong>amarga mucho</strong>.</li>
+        <li>Precaución en el <strong>embarazo temprano</strong>.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f10">Ficha 10 · Azafétida (<em>Hiṅgu</em>)</h3>
+    <p class="botanical">Resina de la raíz de Ferula assafoetida — Familia Apiaceae · <em>Hiṅgu</em>, "la que destruye la flatulencia"</p>
+    <h4>Descripción general</h4>
+    <p>Resina de fuerte impacto olfativo, insustituible para evitar la distensión abdominal provocada por el consumo de legumbres.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Penetrante (Tīkṣṇa), Untuosa (Snigdha)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; aumenta a Pitta (Vāta y Kapha −, Pitta +).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Chedana (raspa y expectora la mucosidad) y Ānāhapraśamana (alivia la distensión abdominal; este es su efecto especial o <em>Prabhāva</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Digestivo:</strong> el carminativo (expulsa gases) y antiespasmódico (calma los espasmos y retortijones) más potente; elimina el gas acumulado en el colon y disuelve los residuos de la mala digestión (Ama).</li>
+      <li><strong>Nervioso:</strong> calma el dolor y los espasmos internos.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Enraíza profundamente la mente ansiosa y dispersa (Vata). Ayuda a procesar "emociones bloqueadas".</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Carminativo muy poderoso que penetra el tejido nervioso del intestino para aliviar los espasmos. Resina rica en disulfuros volátiles: su aroma crudo es sulfuroso. <strong>Siempre debe freírse en ghee o aceite caliente 3–5 segundos</strong> antes de añadir el resto; así se transforma en un <strong>sabor umami profundo</strong> (ese sabor sabroso y "con cuerpo") que imita al ajo y la cebolla. Es indispensable en la cocina yóguica y sátvica (de cualidad pura y serena, <em>Sattva</em>).</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>El exceso agrava la bilis y puede detonar dolores de cabeza en constituciones predominantemente Pitta.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>El "sustituto" del ajo y la cebolla en la cocina yóguica.</li>
+        <li><strong>Nunca en crudo:</strong> activarla unos segundos en grasa caliente.</li>
+        <li>El gran remedio contra <strong>gases y espasmos</strong>.</li>
+      </ul>
+    </div>
+  </article>
+
+  <div class="quiz">
+    <h4>✍️ Autoevaluación — Bloque 2</h4>
+    <ol>
+      <li>Explica por qué el <strong>jengibre seco</strong> es más adecuado para Pitta que el fresco. <em>(Pista: Vipaka.)</em></li>
+      <li>¿Qué precaución de <strong>dosificación</strong> exige el romero en polvo y por qué?</li>
+      <li>¿En qué tres áreas destaca el <strong>fenogreco</strong>? Nombra una de cada una.</li>
+      <li>¿Por qué la <strong>azafétida</strong> nunca se usa en crudo y qué le ocurre al freírla?</li>
+      <li>¿Cuál de estas cuatro especias usarías como remedio principal para los <strong>gases y la distensión</strong>?</li>
+    </ol>
+  </div>
+
+  <!-- BLOQUE 3 -->
+  <div class="block-banner" id="b3"><span class="n">Bloque 3</span><h2>Aromáticas de finalización (aceites volátiles)</h2></div>
+
+  <article class="card">
+    <h3 id="f11">Ficha 11 · Clavo (<em>Lavaṅga</em>)</h3>
+    <p class="botanical">Syzygium aromaticum — Familia Myrtaceae · <em>Lavaṅga</em>, "el que corta o penetra"</p>
+    <h4>Descripción general</h4>
+    <p>Especia aguda que aporta un efecto analgésico y desinfectante local, con una acción térmica final inusual.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu), Amargo (Tikta)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Ligera (Laghu), Untuosa (Snigdha)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> <strong>Fría (Śīta) según la mayoría de las escuelas clásicas; otras la consideran Caliente (Uṣṇa)</strong> — un punto de diferencia entre tradiciones.</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; en dosis pequeñas también apacigua a Pitta (Vāta y Kapha −, Pitta − en dosis pequeñas).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Kāśahara (alivia la tos) y Śūlapraśamana (analgésico local; este es su efecto especial o <em>Prabhāva</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Nervioso/Sensorial:</strong> analgésico local (clásico para dolor dental y de encías).</li>
+      <li><strong>Digestivo:</strong> alivia náuseas, detiene el hipo y estimula el Agni sin sobrecalentar.</li>
+      <li><strong>Respiratorio:</strong> expectorante potente (ayuda a expulsar la mucosidad).</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Aporta frescura, disipa el letargo por emociones estancadas y agudiza los sentidos ante la apatía.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Masticarlo tras las comidas reduce las náuseas, el mal aliento y la mucosidad gástrica. Desinfecta sin quemar en exceso gracias a su potencia fría reconocida por los textos clásicos.</p>
+    <h4>Ciencia moderna</h4>
+    <p>Una de las mayores capacidades antioxidantes de la naturaleza (ORAC) por su altísimo <strong>eugenol</strong>: potente antimicrobiano y anestésico.</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>El consumo crónico y excesivo deprime la sensibilidad neurológica local.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li><strong>Excepción:</strong> especia picante pero de <strong>Virya FRÍA</strong> según la mayoría de escuelas (otras la consideran caliente) → no agrava tanto a Pitta.</li>
+        <li>El gran <strong>analgésico</strong> dental (eugenol).</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f12">Ficha 12 · Canela (<em>Tvak</em>)</h3>
+    <p class="botanical">Cinnamomum verum — Familia Lauraceae · <em>Tvak</em>, "corteza"</p>
+    <h4>Descripción general</h4>
+    <p>Estimulante dulce y aromático que purifica la sangre y mejora la circulación periférica.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu), Dulce (Madhura), Amargo (Tikta)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Ligera (Laghu), Seca (Rūkṣa), Penetrante (Tīkṣṇa)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; puede aumentar Pitta si se abusa (Vāta y Kapha −, Pitta + en exceso).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Viṣaghna (antimicrobiano) y Dīpana (estimula el fuego digestivo, <em>Agni</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Circulatorio:</strong> mejora la microcirculación y fortalece las paredes vasculares.</li>
+      <li><strong>Digestivo:</strong> estimula el Agni; disminuye cólicos.</li>
+      <li><strong>Endocrino:</strong> apoya el control glucémico y la respuesta a la insulina.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Despierta calidez en el corazón, combate el aislamiento y promueve autoconfianza y optimismo.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Su sabor dulce enmascara su profunda acción penetrante. Excelente para mitigar el impacto de los azúcares y de los lácteos pesados. Aromática ideal para infusiones, postres y leches especiadas.</p>
+    <h4>Ciencia moderna</h4>
+    <p>Cinamaldehído y metoxi-cinamaldehído: potente acción antiinflamatoria; mejora la captación periférica de glucosa.</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Si se abusa, puede agravar la hiperacidez y causar una inflamación hepática sutil. Usa preferentemente <em>Cinnamomum verum</em> (canela de Ceilán).</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>Calidez del corazón + <strong>apoyo al azúcar en sangre</strong>.</li>
+        <li>Usa <em>Cinnamomum verum</em> (canela "verdadera" de Ceilán).</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f13">Ficha 13 · Nuez moscada (<em>Jātīphala</em>)</h3>
+    <p class="botanical">Myristica fragrans — Familia Myristicaceae · <em>Jātīphala</em>, "fruta fragante"</p>
+    <h4>Descripción general</h4>
+    <p>Estabilizador profundo del sistema nervioso central: detiene las diarreas agudas y ancla la mente.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu), Amargo (Tikta), Astringente (Kaṣāya)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Ligera (Laghu), Penetrante (Tīkṣṇa)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Picante (Kaṭu)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; aumenta Pitta en dosis elevadas (Vāta y Kapha −, Pitta +).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Grāhī (absorbente, detiene la diarrea) y Nidrājanana (induce el sueño; este es su efecto especial o <em>Prabhāva</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Nervioso:</strong> sedante natural que favorece el sueño profundo; calma el sistema nervioso central.</li>
+      <li><strong>Digestivo:</strong> su astringencia ayuda a detener la diarrea crónica.</li>
+      <li><strong>Reproductor:</strong> tónico afrodisíaco masculino.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Calma la hiperactividad mental y los pensamientos intrusivos; favorece introspección y paz nocturna.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Muy estabilizadora para un Vata errático. Una simple pizca en leche tibia nocturna, equilibrada con cardamomo, asegura un descanso profundo. <strong>Rállala fresca al momento de servir</strong> para no perder sus aceites esenciales. <strong>Combinación de oro (Samyoga):</strong> una pizca en leche tibia antes de dormir, para restaurar la reserva vital de energía e inmunidad (en Ayurveda, <em>Ojas</em>).</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>En dosis altas es tamásica (induce letargo) y puede resultar hepatotóxica y psicoactiva. Úsala siempre en cantidades muy pequeñas.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>La especia del <strong>sueño</strong> y el descanso (¡en dosis pequeñas!).</li>
+        <li>Rállala al momento; en exceso es muy estimulante y puede ser tóxica.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f14">Ficha 14 · Anís estrellado (<em>Cakra Phūl</em>)</h3>
+    <p class="botanical">Illicium verum — Familia Schisandraceae · <em>Cakra Phūl</em>, "flor en forma de rueda"</p>
+    <h4>Descripción general</h4>
+    <p>Expectorante y diaforético potente para movilizar las mucosidades pulmonares frías.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Dulce (Madhura), Picante (Kaṭu)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Ligera (Laghu), Penetrante (Tīkṣṇa)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Caliente (Uṣṇa)</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> <strong>Picante (Kaṭu)</strong></li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Reduce Vata y Kapha; aumenta Pitta de forma moderada (Vāta y Kapha −, Pitta + moderado).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Anulomana (regula el flujo descendente de Vata) y Jvaraghna (reduce la fiebre viral; este es su efecto especial o <em>Prabhāva</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Digestivo:</strong> antiespasmódico potente; alivia cólicos y distensión.</li>
+      <li><strong>Respiratorio:</strong> expectorante; despeja sinusitis y flema bronquial.</li>
+      <li><strong>Reproductor femenino:</strong> apoya la lactancia y suaviza espasmos menstruales.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Su aroma dulce y balsámico induce al centramiento emocional, reduciendo la ansiedad de un Vata sobreestimulado.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Su sabor inicial dulce engaña al paladar, pero su <strong>Vipaka picante (Kaṭu)</strong> genera un calor interno prolongado que despeja los canales respiratorios (<em>Prāṇavaha srotas</em>). Ideal en infusiones y caldos para movilizar la flema fría.</p>
+    <h4>Ciencia moderna</h4>
+    <p>Su aceite contiene 80–90% de <strong>anetol</strong> (relaja la musculatura lisa intestinal) y <strong>ácido shikímico</strong>, precursor de antivirales contra la influenza.</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Calienta excesivamente el cuerpo si la persona cursa con fiebre de origen Pitta.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>Dulce al paladar y calmante: gran <strong>antiespasmódico</strong> y aliado de Vata.</li>
+        <li><strong>Ojo:</strong> aunque su sabor es dulce, su <strong>Vipaka es picante (Kaṭu)</strong> y genera calor interno.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f15">Ficha 15 · Cardamomo verde (<em>Sūkṣma Elā</em>)</h3>
+    <p class="botanical">Elettaria cardamomum — Familia Zingiberaceae · <em>Sūkṣma Elā</em>, "la pequeña Ela"</p>
+    <h4>Descripción general</h4>
+    <p>El armonizador supremo del aparato digestivo superior: regula el ácido sin calentar en exceso.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Picante (Kaṭu), Amargo (Tikta), Dulce (Madhura)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Ligera (Laghu), Seca (Rūkṣa)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> <strong>Fría (Śīta)</strong></li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> <strong>Dulce (Madhura)</strong></li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> <strong>Tridóshico</strong>, con efecto supremo sobre Pitta (lo reduce). El carminativo y digestivo frío por excelencia, ideal para Pitta.</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Mūtrakṛcchraghna (diurético suave) y Hṛdya (tónico cardíaco).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Digestivo:</strong> detiene vómitos y náuseas; alivia la acidez y el reflujo sin calentar.</li>
+      <li><strong>Respiratorio:</strong> expectorante y antiasmático.</li>
+      <li><strong>Urinario:</strong> diurético natural por su potencia fría.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Promueve ligereza mental, alegría y compasión. Ayuda a superar la "pesadez" de las emociones estancadas.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Principal antídoto digestivo: neutraliza la acidez nerviosa sin provocar sequedad. Hervir las vainas o semillas con leche o café <strong>neutraliza</strong> la cualidad pesada y mucógena de los lácteos y el efecto irritante del café. Es totalmente distinto, clínica y energéticamente, del cardamomo negro (<em>Sthūla Elā</em>).</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Extremadamente seguro; prácticamente sin contraindicaciones a dosis alimentarias habituales.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li><strong>Frío (Śīta)</strong> y de <strong>Vipaka dulce (Madhura)</strong>: digestivo apto incluso para Pitta.</li>
+        <li>"Arregla" la leche y el café (los hace más digeribles).</li>
+        <li>No confundir con el cardamomo negro (<em>Sthūla Elā</em>), de energía distinta.</li>
+      </ul>
+    </div>
+  </article>
+
+  <div class="quiz">
+    <h4>✍️ Autoevaluación — Bloque 3</h4>
+    <ol>
+      <li>De este bloque, ¿qué <strong>dos</strong> especias tienen Virya <strong>fría</strong> y por qué es notable en especias picantes?</li>
+      <li>¿Cuál es el <em>Samyoga de oro</em> de la nuez moscada y para qué sirve?</li>
+      <li>¿Qué compuesto da al <strong>clavo</strong> su poder analgésico y antioxidante?</li>
+      <li>¿Por qué se recomienda añadir cardamomo a la leche o al café?</li>
+      <li>Nombra la especia que ayuda a conciliar el <strong>sueño</strong> y la que es mejor <strong>antiespasmódico dulce</strong>.</li>
+    </ol>
+  </div>
+
+  <!-- BLOQUE 4 -->
+  <div class="block-banner" id="b4"><span class="n">Bloque 4</span><h2>El cilantro: una planta, dos medicinas</h2></div>
+
+  <p class="lead">El cilantro es una joya botánica por su <strong>dualidad</strong>: la <strong>semilla</strong> ofrece una energía estructurada y estabilizadora; la <strong>hoja fresca</strong> regala vitalidad cruda y refrescante. Es el ejemplo perfecto del efecto único que tiene cada planta (en Ayurveda, <strong>Prabhava</strong>): una acción especial que no se explica solo por el sabor o la potencia. Muestra cómo la naturaleza térmica de un alimento puede cambiar según su forma y su ciclo de vida.</p>
+
+  <article class="card">
+    <h3 id="f16">Ficha 16 · Semillas de cilantro / Coriandro (<em>Dhānyaka</em>)</h3>
+    <p class="botanical">Coriandrum sativum — Familia Apiaceae · <em>Dhānyaka</em>, "la que nutre" · "El refrigerante digestivo"</p>
+    <h4>Descripción general</h4>
+    <p>Tónico urinario y gastrointestinal que elimina el exceso de calor sin debilitar el fuego metabólico central.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Astringente (Kashaya), Amargo (Tikta), Dulce (Madhura) y levemente Picante (Katu)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Ligera (Laghu), Untuosa (Snigdha)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> <strong>Fría (Sheeta)</strong> — de los pocos digestivos que enfrían</li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Dulce (Madhura)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Tridóshico, con efecto supremo sobre <strong>Pitta</strong> (lo reduce) sin apagar el Agni; calma Vata por su unctuosidad y reduce Kapha por su ligereza.</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Tṛṣṇānigrahaṇa (alivia la sed excesiva) y Dāhapraśamana (elimina el ardor interno; este es su efecto especial o <em>Prabhāva</em>).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Digestivo:</strong> ayuda a activar la digestión (<em>Deepana</em>) y a transformar los residuos digestivos (<em>Pachana</em>), todo sin aportar calor. Es el "extintor": calma la acidez, el ardor y el reflujo; absorbe los gases mientras refresca las mucosas irritadas.</li>
+      <li><strong>Urinario (los canales de la orina, <em>Mutravaha srotas</em>):</strong> diurético; limpia los riñones; alivia el ardor al orinar (cistitis).</li>
+      <li><strong>Linfático y sanguíneo:</strong> limpia los canales linfáticos, ayuda a reducir la fiebre y elimina las toxinas de naturaleza caliente (<em>Pitta Ama</em>).</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>De cualidad mental pura y serena (<strong>sáttvico</strong>). Aporta espacio y calma mental. Cuando Pitta (la energía del calor) está desequilibrado y aparecen irritabilidad, juicio duro, ira o perfeccionismo, actúa como un bálsamo de tolerancia, paciencia y compostura.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Base molida de casi todos los currys, sofritos, tés de verano e infusiones solares. <strong>Tríada CCF:</strong> Comino + Coriandro + Hinojo. Combina con cúrcuma, cardamomo y jengibre fresco. Potencia lentejas rojas/amarillas, calabacines, tomates, arroces y guisos de papa. Su <strong>maceración nocturna en agua</strong> (<em>Dhānyaka Hima</em>) es el tratamiento clásico para desintoxicar los riñones y aliviar la gastritis. Tostadas en seco desarrollan notas cítricas (linalool); en polvo, toleran la cocción húmeda y <strong>espesan</strong> los caldos.</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Muy segura; precaución solo en sequedad o deshidratación severas. En constituciones Kapha, su efecto enfriante puede resultar excesivo durante el invierno crudo.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>El <strong>"extintor" de Pitta</strong>: enfría sin apagar el Agni.</li>
+        <li>Vipaka <strong>dulce</strong> + Virya <strong>fría</strong> = nutre y refresca a la vez.</li>
+        <li>Pieza central de la tríada digestiva <strong>CCF</strong>.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3 id="f17">Ficha 17 · Hojas de cilantro fresco (<em>Kustumburu</em>)</h3>
+    <p class="botanical">Coriandrum sativum — Familia Apiaceae · <em>Kustumburu</em>, "la que mitiga enfermedades" · "El quelante verde"</p>
+    <h4>Descripción general</h4>
+    <p>Agente purificador inmediato de la sangre y mitigador del calor sistémico del verano.</p>
+    <h4>Las cinco características de la sustancia (Rasa Panchaka)</h4>
+    <ul>
+      <li><strong>Sabor (Rasa):</strong> Amargo (Tikta), Astringente (Kaṣāya), Dulce (Madhura)</li>
+      <li><strong>Cualidades físicas (Guna):</strong> Ligera (Laghu)</li>
+      <li><strong>Potencia térmica, calienta o enfría (Virya):</strong> Muy <strong>Fría (Śīta)</strong></li>
+      <li><strong>Efecto después de la digestión (Vipaka):</strong> Dulce (Madhura)</li>
+      <li><strong>Acción sobre las energías del cuerpo (Doshas):</strong> Tridóshico, antagonista directo del exceso de Pitta (Pitta − supremo). Por su cualidad ligera, en gran cantidad y en crudo puede elevar a Vata (Vāta + en exceso).</li>
+    </ul>
+    <h4>Acción terapéutica (Karma)</h4>
+    <p>Raktaprasādana (purifica la sangre).</p>
+    <h4>Sistemas afectados</h4>
+    <ul>
+      <li><strong>Sanguíneo y linfático:</strong> potente purificador de la sangre (en Ayurveda, <em>Rakta Shodhana</em>); actúa como <strong>quelante</strong>, es decir, atrapa metales pesados (como plomo y mercurio) y ayuda al cuerpo a eliminarlos.</li>
+      <li><strong>Tegumentario:</strong> alivia erupciones, urticaria, acné inflamatorio y quemaduras solares (incluso en jugo tópico).</li>
+      <li><strong>Digestivo:</strong> corta la pesadez y la acidez al instante tras comidas copiosas.</li>
+    </ul>
+    <h4>Influencia emocional y mental</h4>
+    <p>Aporta ligereza y fluidez. Su amargor corta apegos emocionales y terquedad mental; limpia la "niebla tóxica" del agotamiento.</p>
+    <h4>Aplicación culinaria y terapéutica</h4>
+    <p>Entra directamente a purificar el tejido sanguíneo (<em>Rakta Dhatu</em>). Es ideal cruda en chutneys para contrarrestar las especias calientes. Es materia prima viva, pura energía vital (en Ayurveda, <em>Prana</em>). <strong>Nunca se cocina:</strong> el calor destruye sus enzimas, vitaminas y aceites volátiles, y la vuelve negra y sin vida. <strong>Pícala en el último segundo</strong> sobre el plato ya servido, o procésala en frío (en chutneys o batidos). Combinación clásica: el <em>Dhania Chutney</em> (salsa cruda de cilantro, menta, limón y sal negra).</p>
+    <h4>Observaciones o precauciones</h4>
+    <p>Por su cualidad ligera, si se consume en gran volumen y en crudo puede generar gas abdominal y elevar a Vata.</p>
+    <div class="key"><span class="key-title">🔑 Para recordar</span>
+      <ul>
+        <li>El <strong>quelante verde</strong>: ayuda a eliminar metales pesados.</li>
+        <li><strong>Regla de oro:</strong> NUNCA se cocina → siempre <strong>crudo y al final</strong>.</li>
+        <li>Misma planta que el coriandro, pero <strong>energía distinta</strong> (Prabhava).</li>
+      </ul>
+    </div>
+  </article>
+
+  <div class="quiz">
+    <h4>✍️ Autoevaluación — Bloque 4</h4>
+    <ol>
+      <li>La semilla y la hoja vienen de la <strong>misma planta</strong>. ¿Qué principio ayurvédico explica que tengan acciones distintas?</li>
+      <li>¿Cuál de las dos formas se puede cocinar y cuál nunca? Justifica con su naturaleza.</li>
+      <li>¿Qué función especial cumplen las <strong>hojas de cilantro</strong> respecto a los metales pesados?</li>
+      <li>¿Por qué se dice que las <strong>semillas de cilantro</strong> son el "extintor" del aparato digestivo?</li>
+      <li>Reconstruye la tríada <strong>CCF</strong> e indica qué dosha equilibra principalmente.</li>
+    </ol>
+  </div>
+
+  <!-- SOLUCIONARIO -->
+  <section id="solucionario" class="answers">
+    <h2>Solucionario (respuestas de autoevaluación)</h2>
+
+    <h3>Bloque 1</h3>
+    <ol>
+      <li>Sus curcuminoides se degradan rápido y son poco solubles; se describe con la <strong>Regla de la Tríada</strong>: calor suave + grasa (ghee/aceite) + piperina (pimienta negra).</li>
+      <li>Se <strong>quema y amarga</strong> a fuego alto (es termolábil); se evita añadiéndola <strong>al final</strong>.</li>
+      <li>Que es un <strong>catalizador/vehículo (Yogavahi)</strong>: potencia la absorción de otras hierbas y alimentos.</li>
+      <li>La <strong>mostaza negra</strong> agrava más a Pitta; en encurtido frío se usa la <strong>mostaza amarilla</strong>.</li>
+      <li>La <strong>cúrcuma</strong> (ficha 1) es la tridóshica del bloque (reduce Kapha y Pitta, neutral en Vata). El <strong>comino</strong> (ficha 6), aunque es un digestivo excelente, <strong>no es un equilibrador absoluto</strong>: en exceso o en seco aumenta a Pitta.</li>
+    </ol>
+
+    <h3>Bloque 2</h3>
+    <ol>
+      <li>El fresco tiene <strong>Vipaka picante</strong> (sobreestimula a Pitta); el seco tiene <strong>Vipaka dulce</strong> y es untuoso, nutre tejidos y calma sin sobrecalentar.</li>
+      <li>Debe usarse en <strong>muy poca cantidad</strong>: molido fino es muy concentrado y, en exceso, domina el plato y puede agravar a Pitta.</li>
+      <li>Digestiva (tónico hepático/biliar), endocrina (regula glucemia/insulina) y reproductiva (galactagogo).</li>
+      <li>Su resina cruda tiene disulfuros de olor sulfuroso; al freírla 3–5 s se transmuta en <strong>umami</strong> tipo ajo/cebolla.</li>
+      <li>La <strong>azafétida (Hingu)</strong>.</li>
+    </ol>
+
+    <h3>Bloque 3</h3>
+    <ol>
+      <li><strong>Clavo</strong> y <strong>cardamomo</strong>; notable porque, siendo picantes, su <strong>Virya fría (Śīta)</strong> evita agravar a Pitta. (En el clavo, la mayoría de las escuelas lo consideran frío, aunque algunas tradiciones lo clasifican como caliente.)</li>
+      <li>Una pizca en <strong>leche tibia antes de dormir</strong>, para restaurar <em>Ojas</em> y favorecer el sueño.</li>
+      <li>El <strong>eugenol</strong>.</li>
+      <li>Porque <strong>neutraliza</strong> la pesadez mucógena de los lácteos y el efecto irritante del café.</li>
+      <li>Sueño: <strong>nuez moscada</strong>. Antiespasmódico dulce: <strong>anís estrellado</strong>.</li>
+    </ol>
+
+    <h3>Bloque 4</h3>
+    <ol>
+      <li>El principio de <strong>Prabhava</strong> (efecto específico): cambia su naturaleza según su forma y ciclo de vida.</li>
+      <li>La <strong>semilla (coriandro)</strong> se puede cocinar (incluso espesa caldos); la <strong>hoja fresca</strong> nunca, porque el calor destruye su <em>Prana</em>, enzimas y aceites volátiles.</li>
+      <li>Actúan como <strong>quelante</strong>, uniéndose a metales pesados (plomo, mercurio) para excretarlos.</li>
+      <li>Porque enfrían la hiperacidez, el ardor y el reflujo, y absorben gases <strong>sin aportar calor</strong>.</li>
+      <li><strong>CCF = Comino + Coriandro + Hinojo</strong>; equilibra principalmente a <strong>Pitta</strong>.</li>
+    </ol>
+  </section>
+
+  <!-- APÉNDICE -->
+  <section id="apendice">
+    <h2>Apéndice · Dinámica de acción culinaria</h2>
+    <p>Clasificación práctica para recordar <strong>cuándo</strong> añadir cada especia durante la cocción:</p>
+    <ol>
+      <li><strong>Especias para el salteado inicial en grasa (Tadka), en grano entero:</strong> mostaza negra, mostaza amarilla y comino. → Se <strong>fríen al inicio</strong> en grasa caliente para abrir todo su sabor.</li>
+      <li><strong>Especias del polvo fino (sinergias):</strong> cúrcuma, páprika dulce, jengibre seco y romero en polvo. → Se agregan con líquidos o a <strong>fuego muy bajo</strong> para que no se quemen.</li>
+      <li><strong>Aromáticas de finalización (volátiles):</strong> cardamomo, canela, clavo, anís estrellado y nuez moscada. → Se <strong>muelen al instante</strong> y se añaden <strong>al final</strong> o en infusiones tapadas, para no perder el <em>Prana</em> de sus aceites.</li>
+    </ol>
+    <div class="key"><span class="key-title">Recordatorio sobre el cilantro fresco (hoja)</span>
+      <ul><li>Siempre crudo, picado en el último momento sobre el plato servido.</li></ul>
+    </div>
+  </section>
+
+  <p class="footer">Material didáctico de apoyo — Curso de Masalas.<br>
+  Las indicaciones aquí descritas tienen fines educativos y culinarios y no sustituyen el consejo de un profesional de la salud.</p>
+
+</div>
+
+<script>
+  /* Versión paginada para PDF: carga Paged.js (paginador de medios impresos)
+     que genera el índice con números de página, encabezado/pie y numeración.
+     Si no hay conexión, se ofrece la impresión directa del navegador. */
+  function generarPDFpaginado(){
+    if (window.__pagedListo){ window.print(); return; }
+    var aviso = document.createElement('div');
+    aviso.className = 'no-print';
+    aviso.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(31,77,58,.92);color:#f3f5ee;font-family:Inter,sans-serif;z-index:9999;text-align:center;padding:24px;';
+    aviso.innerHTML = '<div><div style="font-size:1.2rem;margin-bottom:8px;">Maquetando el manual…</div><div style="opacity:.85;font-size:.9rem;">Generando índice y números de página</div></div>';
+    document.body.appendChild(aviso);
+    window.PagedConfig = {
+      auto: true,
+      after: function(){
+        window.__pagedListo = true;
+        if (aviso.parentNode) aviso.parentNode.removeChild(aviso);
+        setTimeout(function(){ window.print(); }, 400);
+      }
+    };
+    var s = document.createElement('script');
+    s.src = 'https://unpkg.com/pagedjs/dist/paged.polyfill.js';
+    s.onerror = function(){
+      if (aviso.parentNode) aviso.parentNode.removeChild(aviso);
+      alert('No se pudo cargar el paginador (requiere conexión a internet).\n\nUsa el botón "Guardar como PDF (rápido)" y elige A4 · Vertical, desactivando "Encabezados y pies de página".');
+    };
+    document.body.appendChild(s);
+  }
+</script>
+</body>
+</html>
