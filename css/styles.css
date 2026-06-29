@@ -267,25 +267,11 @@ h1, h2, h3, h4 {
   place-items: center;
   min-height: 340px;
 }
-.hero__circle {
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--green-soft), var(--green-deep));
-  box-shadow: var(--shadow);
-  position: relative;
-}
-.hero__circle::after {
-  content: "";
-  position: absolute;
-  inset: 22px;
-  border: 2px dashed rgba(255, 255, 255, 0.45);
-  border-radius: 50%;
-}
-.hero__leaf {
-  position: absolute;
-  font-size: 7rem;
-  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+.hero__logo {
+  width: min(340px, 78vw);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 28px rgba(62, 91, 67, 0.16));
   animation: float 6s ease-in-out infinite;
 }
 @keyframes float {
@@ -529,6 +515,7 @@ h1, h2, h3, h4 {
   .hero__inner { grid-template-columns: 1fr; text-align: center; }
   .hero__content { order: 2; }
   .hero__art { order: 1; min-height: 260px; }
+  .hero__logo { width: min(280px, 72vw); }
   .hero__lead { margin-inline: auto; }
   .hero__actions, .hero__stats { justify-content: center; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
