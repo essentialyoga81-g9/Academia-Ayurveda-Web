@@ -329,7 +329,12 @@ h1, h2, h3, h4 {
   flex-direction: column;
 }
 .course:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
-.course__media { height: 160px; }
+.course__media { height: 160px; display: block; }
+a.course__media {
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+a.course__media:hover { opacity: 0.92; }
 .course__media--1 { background: linear-gradient(135deg, var(--green-soft), var(--green-deep)); }
 .course__media--2 { background: linear-gradient(135deg, var(--gold-soft), var(--gold)); }
 .course__media--masalas {
